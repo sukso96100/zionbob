@@ -1,5 +1,6 @@
 package kr.hs.zion.zionbob;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -20,7 +21,8 @@ import java.util.List;
 /**
  * Created by youngbin on 15. 11. 21.
  */
-public class DetailsActivity extends AppCompatActivity {
+public class DetailsActivity extends AppCompatActivity
+implements MealDetailsFragment.OnFragmentInteractionListener, ReviewsFragment.OnFragmentInteractionListener{
 
     private Toolbar toolbar;
     private TabLayout tabLayout;
@@ -79,5 +81,12 @@ public class DetailsActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
         }
+
     }
+
+    @Override
+    public void onMealDetailsFragmentInteraction(Uri uri){}
+
+    @Override
+    public void onReviewsFragmentInteraction(Uri uri){}
 }
