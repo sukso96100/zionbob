@@ -77,11 +77,18 @@ public class MealDataUtil {
                 +"&schulCrseScCode="+SchoolTypeA+"&schulKndScCode="+SchoolTypeB+"&schMmealScCode="+MealType+"&schYmd"+Date;
     }
 
+    public String getURL(){
+        Log.d(TAG, URL);
+        return this.URL;
+    }
+
     public void parseData(String RawData){
         Document doc = Jsoup.parse(RawData);
-
+        Log.d(TAG,RawData);
         Elements Table = doc.getElementsByClass("tbl_type3");
+        Log.d(TAG,Table.toString());
         Elements Trs = Table.get(0).getElementsByTag("tr");
+        Log.d(TAG, Trs.toString());
 
         // Get Date
         for(int i=0; i<7; i++){
@@ -115,115 +122,115 @@ public class MealDataUtil {
 
         // Get RedPepperOrigin
         for(int i=0; i<7; i++){
-            RedPepperOrigin[i] = Trs.get(4).getElementsByClass("textC").get(i).data();
+            RedPepperOrigin[i] = Trs.get(6).getElementsByClass("textC").get(i).data();
             Log.d(TAG, RedPepperOrigin[i]);
         }
 
         // Get BeefOrigin
         for(int i=0; i<7; i++){
-            BeefOrigin[i] = Trs.get(5).getElementsByClass("textC").get(i).data();
+            BeefOrigin[i] = Trs.get(7).getElementsByClass("textC").get(i).data();
             Log.d(TAG, BeefOrigin[i]);
         }
 
         // Get PorkOrigin
         for(int i=0; i<7; i++){
-            PorkOrigin[i] = Trs.get(6).getElementsByClass("textC").get(i).data();
+            PorkOrigin[i] = Trs.get(8).getElementsByClass("textC").get(i).data();
             Log.d(TAG, PorkOrigin[i]);
         }
 
         // Get ChickenOrigin
         for(int i=0; i<7; i++){
-            ChickenOrigin[i] = Trs.get(7).getElementsByClass("textC").get(i).data();
+            ChickenOrigin[i] = Trs.get(9).getElementsByClass("textC").get(i).data();
             Log.d(TAG, ChickenOrigin[i]);
         }
 
         // Get DuckOrigin
         for(int i=0; i<7; i++){
-            DuckOrigin[i] = Trs.get(8).getElementsByClass("textC").get(i).data();
+            DuckOrigin[i] = Trs.get(10).getElementsByClass("textC").get(i).data();
             Log.d(TAG, DuckOrigin[i]);
         }
 
         // Get ProcessedBeefOrigin
         for(int i=0; i<7; i++){
-            ProcessedBeefOrigin[i] = Trs.get(9).getElementsByClass("textC").get(i).data();
+            ProcessedBeefOrigin[i] = Trs.get(11).getElementsByClass("textC").get(i).data();
             Log.d(TAG, ProcessedBeefOrigin[i]);
         }
 
         // Get ProcessedPorkOrigin
         for(int i=0; i<7; i++){
-            ProcessedPorkOrigin[i] = Trs.get(10).getElementsByClass("textC").get(i).data();
+            ProcessedPorkOrigin[i] = Trs.get(12).getElementsByClass("textC").get(i).data();
             Log.d(TAG, ProcessedPorkOrigin[i]);
         }
 
         // Get ProcessedChickenOrigin
         for(int i=0; i<7; i++){
-            ProcessedChickenOrigin[i] = Trs.get(11).getElementsByClass("textC").get(i).data();
+            ProcessedChickenOrigin[i] = Trs.get(13).getElementsByClass("textC").get(i).data();
             Log.d(TAG, ProcessedChickenOrigin[i]);
         }
 
         // Get ProcessedDuckOrigin
         for(int i=0; i<7; i++){
-            ProcessedDuckOrigin[i] = Trs.get(12).getElementsByClass("textC").get(i).data();
+            ProcessedDuckOrigin[i] = Trs.get(14).getElementsByClass("textC").get(i).data();
             Log.d(TAG, ProcessedDuckOrigin[i]);
         }
 
         // Get notes
         for(int i=0; i<7; i++){
-            Notes[i] = Trs.get(12).getElementsByClass("textC").get(i).data();
+            Notes[i] = Trs.get(15).getElementsByClass("textC").get(i).data();
             Log.d(TAG, Notes[i]);
         }
 
         // Get Energy
         for(int i=0; i<7; i++){
-            Energy [i] = Trs.get(14).getElementsByClass("textC").get(i).data();
+            Energy [i] = Trs.get(17).getElementsByClass("textC").get(i).data();
             Log.d(TAG, Energy [i]);
         }
 
         // Get Carbohydrate
         for(int i=0; i<7; i++){
-            Carbohydrate[i] = Trs.get(15).getElementsByClass("textC").get(i).data();
+            Carbohydrate[i] = Trs.get(18).getElementsByClass("textC").get(i).data();
             Log.d(TAG, Carbohydrate[i]);
         }
 
         // Get Protein
         for(int i=0; i<7; i++){
-            Protein[i] = Trs.get(16).getElementsByClass("textC").get(i).data();
+            Protein[i] = Trs.get(19).getElementsByClass("textC").get(i).data();
             Log.d(TAG, Protein[i]);
         }
 
         // Get Fat
         for(int i=0; i<7; i++){
-            Fat[i] = Trs.get(17).getElementsByClass("textC").get(i).data();
+            Fat[i] = Trs.get(20).getElementsByClass("textC").get(i).data();
             Log.d(TAG, Fat[i]);
         }
 
         // Get VitaminA
         for(int i=0; i<7; i++){
-            VitaminA[i] = Trs.get(18).getElementsByClass("textC").get(i).data();
+            VitaminA[i] = Trs.get(21).getElementsByClass("textC").get(i).data();
             Log.d(TAG, VitaminA[i]);
         }
 
         // Get Thiamin
         for(int i=0; i<7; i++){
-            Thiamin[i] = Trs.get(19).getElementsByClass("textC").get(i).data();
+            Thiamin[i] = Trs.get(22).getElementsByClass("textC").get(i).data();
             Log.d(TAG, Thiamin[i]);
         }
 
         // Get Riboflavin
         for(int i=0; i<7; i++){
-            Riboflavin[i] = Trs.get(20).getElementsByClass("textC").get(i).data();
+            Riboflavin[i] = Trs.get(22).getElementsByClass("textC").get(i).data();
             Log.d(TAG, Riboflavin[i]);
         }
 
         // Get Calcium
         for(int i=0; i<7; i++){
-            Calcium[i] = Trs.get(21).getElementsByClass("textC").get(i).data();
+            Calcium[i] = Trs.get(23).getElementsByClass("textC").get(i).data();
             Log.d(TAG, Calcium[i]);
         }
 
         // Get Iron
         for(int i=0; i<7; i++){
-            Iron[i] = Trs.get(22).getElementsByClass("textC").get(i).data();
+            Iron[i] = Trs.get(24).getElementsByClass("textC").get(i).data();
             Log.d(TAG, Iron[i]);
         }
     }

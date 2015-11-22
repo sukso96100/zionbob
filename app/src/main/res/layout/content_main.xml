@@ -21,7 +21,8 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             app:cardElevation="4dp"
-            app:cardUseCompatPadding="true">
+            app:cardUseCompatPadding="true"
+            android:id="@+id/lunchcard">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -69,7 +70,8 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             app:cardElevation="4dp"
-            app:cardUseCompatPadding="true">
+            app:cardUseCompatPadding="true"
+            android:id="@+id/dinnercard">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
