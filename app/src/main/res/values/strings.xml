@@ -8,4 +8,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="error.meal.nodata">The meal is not provided today, or No informations provided yet.</string>
+    <string name="tab.details.details">Details</string>
+    <string name="tab.details.reviews">Reviews</string>
+    <string name="title.details">Meal Details</string>
 </resources>

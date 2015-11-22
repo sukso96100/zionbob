@@ -23,7 +23,8 @@
             android:layout_width="match_parent"
             app:cardElevation="4dp"
             app:cardUseCompatPadding="true"
-            android:id="@+id/lunchcard">
+            android:id="@+id/lunchcard"
+            android:foreground="?selectableItemBackground">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -72,7 +73,8 @@
             android:layout_width="match_parent"
             app:cardElevation="4dp"
             app:cardUseCompatPadding="true"
-            android:id="@+id/dinnercard">
+            android:id="@+id/dinnercard"
+            android:foreground="?selectableItemBackground">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

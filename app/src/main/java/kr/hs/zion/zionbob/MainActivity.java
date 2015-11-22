@@ -2,6 +2,7 @@ package kr.hs.zion.zionbob;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -80,6 +81,20 @@ public class MainActivity extends AppCompatActivity {
         month = Cal.get(Calendar.MONTH) + 1;
         day = Cal.get(Calendar.DAY_OF_MONTH);
         dayofweek = Cal.get(Calendar.DAY_OF_WEEK) - 1;
+
+        LunchCV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, DetailsActivity.class));
+            }
+        });
+
+        DinnerCV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, DetailsActivity.class));
+            }
+        });
 
         SRL.setRefreshing(false);
         SRL.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

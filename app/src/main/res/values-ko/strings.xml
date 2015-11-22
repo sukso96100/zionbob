@@ -6,4 +6,7 @@
     <string name="lunch">점심</string>
     <string name="action_date">날짜 선택</string>
     <string name="error.meal.nodata">오늘 식단이 제공되지 않거나, 아직 식단 정보가 제공되지 않았습니다.</string>
+    <string name="tab.details.details">상세정보</string>
+    <string name="tab.details.reviews">리뷰</string>
+    <string name="title.details">식단 상세정보</string>
 </resources>
