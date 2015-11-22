@@ -4,4 +4,6 @@
     <string name="action_settings">설정</string>
     <string name="dinner">저녁</string>
     <string name="lunch">점심</string>
+    <string name="action_date">날짜 선택</string>
+    <string name="error.meal.nodata">오늘 식단이 제공되지 않거나, 아직 식단 정보가 제공되지 않았습니다.</string>
 </resources>
