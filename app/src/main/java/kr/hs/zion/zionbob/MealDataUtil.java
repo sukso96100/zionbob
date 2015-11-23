@@ -50,6 +50,7 @@ public class MealDataUtil {
     String[] VitaminA = new String[7];
     String[] Thiamin = new String[7];
     String[] Riboflavin = new String[7];
+    String[] VitaminC = new String[7];
     String[] Calcium = new String[7];
     String[] Iron = new String[7];
 
@@ -217,19 +218,25 @@ public class MealDataUtil {
 
         // Get Riboflavin
         for(int i=0; i<7; i++){
-            Riboflavin[i] = Trs.get(22).getElementsByClass("textC").get(i).text();
+            Riboflavin[i] = Trs.get(23).getElementsByClass("textC").get(i).text();
             Log.d(TAG, Riboflavin[i]);
+        }
+
+        // Get VitaminC
+        for(int i=0; i<7; i++){
+            VitaminC[i] = Trs.get(24).getElementsByClass("textC").get(i).text();
+            Log.d(TAG, VitaminC[i]);
         }
 
         // Get Calcium
         for(int i=0; i<7; i++){
-            Calcium[i] = Trs.get(23).getElementsByClass("textC").get(i).text();
+            Calcium[i] = Trs.get(25).getElementsByClass("textC").get(i).text();
             Log.d(TAG, Calcium[i]);
         }
 
         // Get Iron
         for(int i=0; i<7; i++){
-            Iron[i] = Trs.get(24).getElementsByClass("textC").get(i).text();
+            Iron[i] = Trs.get(26).getElementsByClass("textC").get(i).text();
             Log.d(TAG, Iron[i]);
         }
     }

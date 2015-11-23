@@ -31,14 +31,15 @@
     </string-array>
     <string-array name="array_nutrinets">
         <item>Energy(kcal)</item>
-        <item>Carbohydrate</item>
-        <item>Protein</item>
-        <item>Fat</item>
-        <item>Vitamin A</item>
-        <item>Thiamin</item>
+        <item>Carbohydrate(g)</item>
+        <item>Protein(g)</item>
+        <item>Fat(g)</item>
+        <item>Vitamin A(R.E)</item>
+        <item>Thiamin(mg)</item>
         <item>Riboflavin</item>
-        <item>Calcium</item>
-        <item>Iron</item>
+        <item>Vitamin C(R.E)</item>
+        <item>Calcium(mg)</item>
+        <item>Iron(mg)</item>
     </string-array>
     <string-array name="array_params">
         <item>date</item>
@@ -62,6 +63,7 @@
         <item>vitamina</item>
         <item>thiamin</item>
         <item>riboflavin</item>
+        <item>vitaminc</item>
         <item>calcium</item>
         <item>iron</item>
     </string-array>

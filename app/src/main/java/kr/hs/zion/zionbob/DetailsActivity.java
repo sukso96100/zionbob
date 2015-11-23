@@ -47,8 +47,8 @@ implements MealDetailsFragment.OnFragmentInteractionListener, ReviewsFragment.On
 
         // get passed data
         PARAMS = getResources().getStringArray(R.array.array_params);
-        DATA = new String[23];
-        for(int i=0; i<23; i++){
+        DATA = new String[24];
+        for(int i=0; i<24; i++){
             DATA[i] = getIntent().getStringExtra(PARAMS[i]);
         }
         mealtype = getIntent().getIntExtra("mealtype",2);

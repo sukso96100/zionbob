@@ -45,7 +45,7 @@ public class MealDetailsFragment extends Fragment {
         ARG_PARAMS = context.getResources().getStringArray(R.array.array_params);
         Log.d(TAG, DATA.toString());
         Log.d(TAG, ARG_PARAMS.toString());
-        for(int i=0; i<23; i++){
+        for(int i=0; i<24; i++){
             args.putString(ARG_PARAMS[i], DATA[i]);
         }
         fragment.setArguments(args);
@@ -57,8 +57,8 @@ public class MealDetailsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         // get arguments
         if (getArguments() != null) {
-            mParams = new String[23];
-            for(int i=0; i<23; i++){
+            mParams = new String[24];
+            for(int i=0; i<24; i++){
                 mParams[i] = getArguments().getString(ARG_PARAMS[i]);
             }
         }
@@ -84,8 +84,8 @@ public class MealDetailsFragment extends Fragment {
             }
         }
         OriginText.setText(OriginString);
-        for(int i=14; i<23; i++){
-            if(mParams[i].length()>0) {
+        for(int i=14; i<24; i++){
+            if(mParams[i].length()>0) { //ERR!
                 NutrinetsString += NutrinetTitles[i - 14] + " : " + mParams[i] + "\n";
             }
         }

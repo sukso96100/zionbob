@@ -122,8 +122,9 @@ public class MainActivity extends AppCompatActivity {
                 LunchIntent.putExtra(PARAMS[18], LunchMduObj.VitaminA[dayofweek]);
                 LunchIntent.putExtra(PARAMS[19], LunchMduObj.Thiamin[dayofweek]);
                 LunchIntent.putExtra(PARAMS[20], LunchMduObj.Riboflavin[dayofweek]);
-                LunchIntent.putExtra(PARAMS[21], LunchMduObj.Calcium[dayofweek]);
-                LunchIntent.putExtra(PARAMS[22], LunchMduObj.Iron[dayofweek]);
+                LunchIntent.putExtra(PARAMS[21], LunchMduObj.VitaminC[dayofweek]);
+                LunchIntent.putExtra(PARAMS[22], LunchMduObj.Calcium[dayofweek]);
+                LunchIntent.putExtra(PARAMS[23], LunchMduObj.Iron[dayofweek]);
                 startActivity(LunchIntent);
             }
         });
@@ -158,8 +159,9 @@ public class MainActivity extends AppCompatActivity {
                 DinnerIntent.putExtra(PARAMS[18], DinnerMduObj.VitaminA[dayofweek]);
                 DinnerIntent.putExtra(PARAMS[19], DinnerMduObj.Thiamin[dayofweek]);
                 DinnerIntent.putExtra(PARAMS[20], DinnerMduObj.Riboflavin[dayofweek]);
-                DinnerIntent.putExtra(PARAMS[21], DinnerMduObj.Calcium[dayofweek]);
-                DinnerIntent.putExtra(PARAMS[22], DinnerMduObj.Iron[dayofweek]);
+                DinnerIntent.putExtra(PARAMS[21], DinnerMduObj.VitaminC[dayofweek]);
+                DinnerIntent.putExtra(PARAMS[22], DinnerMduObj.Calcium[dayofweek]);
+                DinnerIntent.putExtra(PARAMS[23], DinnerMduObj.Iron[dayofweek]);
                 startActivity(DinnerIntent);
             }
         });
