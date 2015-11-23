@@ -7,6 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 
 /**
@@ -20,12 +24,8 @@ import android.view.ViewGroup;
 public class MealDetailsFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
     static String[] ARG_PARAMS;
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
     private String[] mParams;
     private OnFragmentInteractionListener mListener;
 
@@ -35,9 +35,10 @@ public class MealDetailsFragment extends Fragment {
 
     // TODO: Rename and change types and number of parameters
     public static MealDetailsFragment newInstance(String[] DATA) {
-        ARG_PARAMS = MealDataUtil.ARG_PARAMS;
+        // set passed data as arguments
         MealDetailsFragment fragment = new MealDetailsFragment();
         Bundle args = new Bundle();
+        ARG_PARAMS = MealDataUtil.ARG_PARAMS;
         for(int i=0; i<23; i++){
             args.putString(ARG_PARAMS[0], DATA[i]);
         }
@@ -48,6 +49,7 @@ public class MealDetailsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // get arguments
         if (getArguments() != null) {
             mParams = new String[23];
             for(int i=0; i<23; i++){
@@ -60,7 +62,12 @@ public class MealDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_meal_details, container, false);
+        View Layout = inflater.inflate(R.layout.fragment_meal_details, container, false);
+        TextView MealText = (TextView)Layout.findViewById(R.id.mealtxt);
+        TextView OriginText = (TextView)Layout.findViewById(R.id.origintxt);
+        TextView NutrientsText = (TextView)Layout.findViewById(R.id.nutrientstxt);
+        MealText.setText(mParams[1]);
+        return Layout;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

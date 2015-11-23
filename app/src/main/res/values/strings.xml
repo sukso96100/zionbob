@@ -14,4 +14,6 @@
     <string name="meal">Meal</string>
     <string name="origin">Origin of Ingredients</string>
     <string name="nutrients">Nutrients</string>
+
+    <string-array name="array.origin"></string-array>
 </resources>

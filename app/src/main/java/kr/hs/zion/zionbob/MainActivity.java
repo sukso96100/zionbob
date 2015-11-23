@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         LunchCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // pass some(?) data to DetailsActivity
                 Intent LunchIntent = new Intent(mContext, DetailsActivity.class);
                 // Meal
                 LunchIntent.putExtra(PARAMS[0],year+"."+month+"."+day);
@@ -126,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
         DinnerCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // pass some(?) data to DetailsActivity
                 Intent DinnerIntent = new Intent(mContext, DetailsActivity.class);
                 // Meal
                 DinnerIntent.putExtra(PARAMS[0], year + "." + month + "." + day);
@@ -171,6 +173,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        // Set date
         menu.findItem(R.id.action_date).setTitle(year+"."+month+"."+day);
         return true;
     }
@@ -187,6 +190,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    // start load meal data
     void getMealData(){
         SRL.setRefreshing(true);
         Log.d(TAG, "Loading Data...");
@@ -195,9 +199,11 @@ public class MainActivity extends AppCompatActivity {
         getLunch();
     }
 
+    // load lunch data
     void getLunch(){
         Log.d(TAG, "Loading Lunch Data");
-        final MealDataUtil LunchObj = new MealDataUtil(ProvienceCode, SchooolCode, SchoolTypeA, SchoolTypeB, lunch, year+"."+month+"."+day);
+        final MealDataUtil LunchObj = new MealDataUtil(ProvienceCode, SchooolCode,
+                SchoolTypeA, SchoolTypeB, lunch, year+"."+month+"."+day);
         AsyncHttpClient LunchClient = new AsyncHttpClient();
         LunchClient.get(LunchObj.getURL(), new AsyncHttpResponseHandler() {
 
@@ -231,9 +237,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //load dinner data
     void getDinner(){
         Log.d(TAG, "Loading Dinner Data");
-        final MealDataUtil DinnerObj = new MealDataUtil(ProvienceCode, SchooolCode, SchoolTypeA, SchoolTypeB, dinner, year+"."+month+"."+day);
+        final MealDataUtil DinnerObj = new MealDataUtil(ProvienceCode, SchooolCode,
+                SchoolTypeA, SchoolTypeB, dinner, year+"."+month+"."+day);
         AsyncHttpClient DinnerClient = new AsyncHttpClient();
         DinnerClient.get(DinnerObj.getURL(), new AsyncHttpResponseHandler() {
 
@@ -271,6 +279,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // pick date from datepickerdialog
     public void pickDate(){
         DPD_ODSL = new DatePickerDialog.OnDateSetListener() {
             @Override
