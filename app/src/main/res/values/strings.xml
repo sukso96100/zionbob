@@ -68,4 +68,7 @@
     <string name="title_activity_my_review">Add or edit your review</string>
     <string name="average">Average</string>
     <string name="myreview">My Review</string>
+    <string name="add_review">(Click here to add your review)</string>
+    <string name="noreview">No Reviews</string>
+    <string name="noreview_addreview">Add Review</string>
 </resources>

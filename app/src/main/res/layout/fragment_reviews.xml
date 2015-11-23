@@ -4,10 +4,8 @@
     android:layout_height="match_parent"
     tools:context="kr.hs.zion.zionbob.ReviewsFragment">
 
-   <android.support.v7.widget.RecyclerView
+   <ListView
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:id="@+id/reviews">
-
-   </android.support.v7.widget.RecyclerView>
+       android:id="@+id/reviews"/>
 </FrameLayout>

@@ -40,4 +40,7 @@
     <string name="title_activity_my_review">리뷰 추가 또는 수정하기</string>
     <string name="average">평균</string>
     <string name="myreview">나의 리뷰</string>
+    <string name="add_review">(여기를 클릭하여 나의 리뷰 추가하기)</string>
+    <string name="noreview">리뷰 없음</string>
+    <string name="noreview_addreview">리뷰 추가</string>
 </resources>

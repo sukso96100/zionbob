@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // pass some(?) data to DetailsActivity
                 Intent LunchIntent = new Intent(mContext, DetailsActivity.class);
+                LunchIntent.putExtra("mealtype", 2);
                 // Meal
                 LunchIntent.putExtra(PARAMS[0],year+"."+month+"."+day);
                 LunchIntent.putExtra(PARAMS[1], LunchMduObj.Meal[dayofweek]);
@@ -129,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // pass some(?) data to DetailsActivity
                 Intent DinnerIntent = new Intent(mContext, DetailsActivity.class);
+                DinnerIntent.putExtra("mealtype", 3);
                 // Meal
                 DinnerIntent.putExtra(PARAMS[0], year + "." + month + "." + day);
                 DinnerIntent.putExtra(PARAMS[1], DinnerMduObj.Meal[dayofweek]);

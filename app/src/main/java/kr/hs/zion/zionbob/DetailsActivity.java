@@ -31,6 +31,7 @@ implements MealDetailsFragment.OnFragmentInteractionListener, ReviewsFragment.On
     private ViewPager viewPager;
     String[] DATA;
     static String[] PARAMS;
+    int mealtype;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ implements MealDetailsFragment.OnFragmentInteractionListener, ReviewsFragment.On
         for(int i=0; i<23; i++){
             DATA[i] = getIntent().getStringExtra(PARAMS[i]);
         }
+        mealtype = getIntent().getIntExtra("mealtype",2);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
@@ -62,7 +64,7 @@ implements MealDetailsFragment.OnFragmentInteractionListener, ReviewsFragment.On
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new MealDetailsFragment().newInstance(DATA, mContext), getResources().getString(R.string.tab_details_details));
-        adapter.addFragment(new ReviewsFragment(), getResources().getString(R.string.tab_details_reviews));
+        adapter.addFragment(new ReviewsFragment().newInstance(DATA[0], mealtype), getResources().getString(R.string.tab_details_reviews));
         viewPager.setAdapter(adapter);
     }
 
