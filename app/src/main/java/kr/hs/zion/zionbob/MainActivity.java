@@ -20,6 +20,10 @@ import android.widget.TextView;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
@@ -194,6 +198,8 @@ public class MainActivity extends AppCompatActivity {
 
     // start load meal data
     void getMealData(){
+        LunchAvr.setText("0.0");
+        DinnerAvr.setText("0.0");
         SRL.setRefreshing(true);
         Log.d(TAG, "Loading Data...");
         LunchCV.setVisibility(View.INVISIBLE);
@@ -268,6 +274,7 @@ public class MainActivity extends AppCompatActivity {
                 DinnerMduObj = DinnerObj;
                 Log.d(TAG, "Dinner Data Loaded");
                 SRL.setRefreshing(false);
+                setverage();
             }
 
             @Override
@@ -277,6 +284,7 @@ public class MainActivity extends AppCompatActivity {
                 LunchCV.setVisibility(View.VISIBLE);
                 DinnerCV.setVisibility(View.VISIBLE);
                 SRL.setRefreshing(false);
+                setverage();
             }
         });
     }
@@ -298,5 +306,49 @@ public class MainActivity extends AppCompatActivity {
         };
         DatePickerDialog DPD = new DatePickerDialog(mContext,DPD_ODSL,year,month-1,day);
         DPD.show();
+    }
+
+    void setverage(){
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Reviews");
+        query.whereEqualTo("date", year+"."+month+"."+day+"_2");
+        query.getFirstInBackground(new GetCallback<ParseObject>() {
+            public void done(ParseObject object, ParseException e) {
+                if (object == null) {
+                    Log.d(TAG, "The getFirst request failed.");
+
+                } else {
+                    Log.d(TAG, "GOT DATA");
+                    // Caculate Average Rate
+                    float Sum = 0;
+                    for(int i=0; i<object.getList("rates").size(); i++){
+                        Sum += (double) object.getList("rates").get(i);
+                    }
+                    float Average = Sum / object.getList("rates").size();
+                    LunchAvr.setText(String.valueOf(Average));
+                }
+            }
+        });
+
+        ParseQuery<ParseObject> query1 = ParseQuery.getQuery("Reviews");
+        query1.whereEqualTo("date", year+"."+month+"."+day+"_3");
+        query1.getFirstInBackground(new GetCallback<ParseObject>() {
+            public void done(ParseObject object, ParseException e) {
+                if (object == null) {
+                    Log.d(TAG, "The getFirst request failed.");
+
+                } else {
+                    Log.d(TAG, "GOT DATA");
+                    // Caculate Average Rate
+                    float Sum = 0;
+                    for(int i=0; i<object.getList("rates").size(); i++){
+                        Sum += (double) object.getList("rates").get(i);
+                    }
+                    float Average = Sum / object.getList("rates").size();
+                    DinnerAvr.setText(String.valueOf(Average));
+                }
+            }
+        });
+
+
     }
 }

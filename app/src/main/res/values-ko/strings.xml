@@ -43,4 +43,6 @@
     <string name="add_review">(여기를 클릭하여 나의 리뷰 추가하기)</string>
     <string name="noreview">리뷰 없음</string>
     <string name="noreview_addreview">리뷰 추가</string>
+    <string name="about">앱 정보</string>
+    <string name="done">작성 마치기</string>
 </resources>

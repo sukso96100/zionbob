@@ -151,9 +151,9 @@ public class ReviewsFragment extends Fragment {
     View getHeader(List<Object> GUIDs,
                    List<Object> Rates, List<Object> Reviews, int MyReviewPos){
         // Caculate Average Rate
-        int Sum = 0;
+        float Sum = 0;
         for(int i=0; i<Rates.size(); i++){
-            Sum += (int) Rates.get(i);
+            Sum += (double) Rates.get(i);
         }
         float Average = Sum / Rates.size();
         View v = (View) getActivity()
@@ -165,7 +165,8 @@ public class ReviewsFragment extends Fragment {
         AvrRB.setRating(Average);
         if(MyReviewPos!=-1) {
             MyRB.setNumStars(5);
-            MyRB.setRating((float) Rates.get(MyReviewPos));
+            double d = (double)Rates.get(MyReviewPos);
+            MyRB.setRating((float) d);
             MyReviewTxt.setText((String) Reviews.get(MyReviewPos));
         }
         return v;
@@ -179,7 +180,7 @@ public class ReviewsFragment extends Fragment {
 
     int findMyReview(String GUID, List<Object> GUIDs){
         for(int i=0; i<GUIDs.size(); i++){
-            if(GUIDs.get(i)==GUID){
+            if(GUIDs.get(i).toString().equals(GUID)){
                 return i;
             }
         }

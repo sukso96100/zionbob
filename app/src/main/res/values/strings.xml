@@ -71,4 +71,6 @@
     <string name="add_review">(Click here to add your review)</string>
     <string name="noreview">No Reviews</string>
     <string name="noreview_addreview">Add Review</string>
+    <string name="about">About</string>
+    <string name="done">Done</string>
 </resources>

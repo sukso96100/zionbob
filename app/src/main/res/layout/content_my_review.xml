@@ -8,7 +8,8 @@
     tools:context="kr.hs.zion.zionbob.MyReviewActivity"
     tools:showIn="@layout/activity_my_review"
     android:orientation="vertical"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal"
+    android:padding="8dp">
 
     <RatingBar
         android:layout_width="wrap_content"
