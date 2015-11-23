@@ -27,6 +27,8 @@ implements MealDetailsFragment.OnFragmentInteractionListener, ReviewsFragment.On
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    String[] DATA;
+    static String[] PARAMS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +47,18 @@ implements MealDetailsFragment.OnFragmentInteractionListener, ReviewsFragment.On
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        // get passed data
+        PARAMS = MealDataUtil.ARG_PARAMS;
+        DATA = new String[23];
+        for(int i=0; i<23; i++){
+            DATA[i] = getIntent().getStringExtra(PARAMS[i]);
+        }
     }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new MealDetailsFragment(), getResources().getString(R.string.tab_details_details));
+        adapter.addFragment(new MealDetailsFragment().newInstance(DATA), getResources().getString(R.string.tab_details_details));
         adapter.addFragment(new ReviewsFragment(), getResources().getString(R.string.tab_details_reviews));
         viewPager.setAdapter(adapter);
     }

@@ -53,7 +53,12 @@ public class MealDataUtil {
     String[] Calcium = new String[7];
     String[] Iron = new String[7];
 
-
+    public static final String[] ARG_PARAMS = {"date","meal","riceorigin","kimchiorigin",
+            "redpepperorigin", "beeforigin", "porkorigin",
+            "chickenorigin", "duckorigin", "probeeforigin",
+            "proporkorigin",  "prochickenorigin", "produckorigin",
+            "notes", "energy", "carbohydrate", "protein", "fat",
+            "vitamina", "thiamin", "riboflavin", "calcium","iron"};
 
     //ProvienceCode 시/도 교육청 코드
     // SchoolCode 학교 코드

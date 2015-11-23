@@ -9,4 +9,7 @@
     <string name="tab.details.details">상세정보</string>
     <string name="tab.details.reviews">리뷰</string>
     <string name="title.details">식단 상세정보</string>
+    <string name="meal">식단</string>
+    <string name="origin">식제료 원산지</string>
+    <string name="nutrients">영양성분</string>
 </resources>

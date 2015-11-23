@@ -1,13 +1,116 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="kr.hs.zion.zionbob.MealDetailsFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp">
+    <android.support.v7.widget.CardView
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true"
+        android:id="@+id/mealcard"
+        android:foreground="?selectableItemBackground">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+    android:layout_marginTop="8dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/meal"
+                android:textSize="24dp"
+                android:layout_weight="1"/>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:background="#000000"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="양꼬치\n칭따오 맥주\n단무지 무침\n추가밥\n파절이 무침"
+                android:layout_marginBottom="8dp"
+                android:id="@+id/mealtxt"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+    <android.support.v7.widget.CardView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true"
+        android:id="@+id/ingredientscard"
+        android:foreground="?selectableItemBackground">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:layout_marginTop="8dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/origin"
+                android:textSize="24dp"
+                android:layout_weight="1"/>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:background="#000000"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="양꼬치\n칭따오 맥주\n단무지 무침\n추가밥\n파절이 무침"
+                android:layout_marginBottom="8dp"
+                android:id="@+id/origintxt"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+    <android.support.v7.widget.CardView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true"
+        android:id="@+id/nutrientscard"
+        android:foreground="?selectableItemBackground">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:layout_marginTop="8dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nutrients"
+                android:textSize="24dp"
+                android:layout_weight="1"/>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:background="#000000"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="양꼬치\n칭따오 맥주\n단무지 무침\n추가밥\n파절이 무침"
+                android:layout_marginBottom="8dp"
+                android:id="@+id/nutrientstxt"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
 
-</FrameLayout>
+</ScrollView>

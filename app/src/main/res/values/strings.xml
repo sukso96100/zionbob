@@ -11,4 +11,7 @@
     <string name="tab.details.details">Details</string>
     <string name="tab.details.reviews">Reviews</string>
     <string name="title.details">Meal Details</string>
+    <string name="meal">Meal</string>
+    <string name="origin">Origin of Ingredients</string>
+    <string name="nutrients">Nutrients</string>
 </resources>
