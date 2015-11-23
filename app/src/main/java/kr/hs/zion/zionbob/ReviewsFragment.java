@@ -1,6 +1,7 @@
 package kr.hs.zion.zionbob;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,8 +11,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RatingBar;
+import android.widget.TextView;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
@@ -21,6 +25,7 @@ import com.parse.ParseQuery;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class ReviewsFragment extends Fragment {
@@ -36,8 +41,11 @@ public class ReviewsFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    View Layout;
+    View EmptyView;
     private ListView LV;
     private ReviewsAdapter RA;
+    String GUID;
 
     public ReviewsFragment() {
         // Required empty public constructor
@@ -64,10 +72,21 @@ public class ReviewsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        GuidTool GT = new GuidTool(getActivity());
+        GUID = GT.getGUID();
         // Inflate the layout for this fragment
-        View Layout = inflater.inflate(R.layout.fragment_reviews, container, false);
+        Layout = inflater.inflate(R.layout.fragment_reviews, container, false);
+        EmptyView = (View)Layout.findViewById(R.id.empty);
+        Button AddReview = (Button) EmptyView.findViewById(R.id.button);
+        AddReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMyReview(mDate + "_" + mMealType);
+            }
+        });
         LV = (ListView)Layout.findViewById(R.id.reviews);
-        loadReviews(mDate,mMealType);
+        LV.setEmptyView(EmptyView);
+        loadReviews(mDate, mMealType);
         return Layout;
     }
 
@@ -100,27 +119,37 @@ public class ReviewsFragment extends Fragment {
         void onReviewsFragmentInteraction(Uri uri);
     }
 
-    void loadReviews(String Date, int mealType){
+    void loadReviews(final String Date, final int mealType){
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Reviews");
         query.whereEqualTo("date", Date + "_" + mealType);
         query.getFirstInBackground(new GetCallback<ParseObject>() {
             public void done(ParseObject object, ParseException e) {
                 if (object == null) {
                     Log.d(TAG, "The getFirst request failed.");
+
                 } else {
                     Log.d(TAG, "Retrieved the object.");
-                    LV.addHeaderView(getHeader(object.getList("guids"),object.getList("rates"),object.getList("reviews")));
+                    int myReviewPos = findMyReview(GUID,object.getList("guids"));
+                    LV.addHeaderView(getHeader(object.getList("guids"), object.getList("rates"), object.getList("reviews"), myReviewPos));
                     RA = new ReviewsAdapter(getActivity(),
                             object.getList("guids"),object.getList("rates"),object.getList("reviews"));
                     LV.setAdapter(RA);
-
+                    LV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            if(position==0){
+                                Log.d(TAG,"ADD OR EDIT MY REVIEW");
+                                openMyReview(Date + "_" + mealType);
+                            }
+                        }
+                    });
                 }
             }
         });
     }
 
     View getHeader(List<Object> GUIDs,
-                   List<Object> Rates, List<Object> Reviews){
+                   List<Object> Rates, List<Object> Reviews, int MyReviewPos){
         // Caculate Average Rate
         int Sum = 0;
         for(int i=0; i<Rates.size(); i++){
@@ -130,8 +159,30 @@ public class ReviewsFragment extends Fragment {
         View v = (View) getActivity()
                 .getLayoutInflater().inflate(R.layout.header_review, null);
         RatingBar AvrRB = (RatingBar)v.findViewById(R.id.rateavr);
+        RatingBar MyRB = (RatingBar)v.findViewById(R.id.myrate);
+        TextView MyReviewTxt = (TextView)v.findViewById(R.id.myreview);
         AvrRB.setNumStars(5);
         AvrRB.setRating(Average);
+        if(MyReviewPos!=-1) {
+            MyRB.setNumStars(5);
+            MyRB.setRating((float) Rates.get(MyReviewPos));
+            MyReviewTxt.setText((String) Reviews.get(MyReviewPos));
+        }
         return v;
+    }
+
+    void openMyReview(String Date){
+        Intent intent = new Intent(getActivity(), MyReviewActivity.class);
+        intent.putExtra("date", Date);
+        startActivity(intent);
+    }
+
+    int findMyReview(String GUID, List<Object> GUIDs){
+        for(int i=0; i<GUIDs.size(); i++){
+            if(GUIDs.get(i)==GUID){
+                return i;
+            }
+        }
+        return -1;
     }
 }
