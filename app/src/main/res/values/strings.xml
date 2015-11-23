@@ -15,7 +15,7 @@
     <string name="origin">Origin of Ingredients</string>
     <string name="nutrients">Nutrients</string>
 
-    <string-array name="array.origin">
+    <string-array name="array_origin">
         <item>Rice</item>
         <item>Kimchi</item>
         <item>Red Pepper</item>
@@ -29,7 +29,7 @@
         <item>Processed Duck</item>
         <item>Notes</item>
     </string-array>
-    <string-array name="array.nutrinets">
+    <string-array name="array_nutrinets">
         <item>Energy(kcal)</item>
         <item>Carbohydrate</item>
         <item>Protein</item>

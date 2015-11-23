@@ -12,4 +12,29 @@
     <string name="meal">식단</string>
     <string name="origin">식제료 원산지</string>
     <string name="nutrients">영양성분</string>
+    <string-array name="array_origin">
+        <item>쌀</item>
+        <item>김치류</item>
+        <item>고춧가루</item>
+        <item>쇠고기</item>
+        <item>돼지고기</item>
+        <item>닭고기</item>
+        <item>오리고기</item>
+        <item>쇠고기 육가공품</item>
+        <item>돼지고기 육가공품</item>
+        <item>닭고기 육가공품</item>
+        <item>오리고기 육가공품</item>
+        <item>비고</item>
+    </string-array>
+    <string-array name="array_nutrinets">
+        <item>열량(kcal)</item>
+        <item>탄수화물</item>
+        <item>단백질</item>
+        <item>지방</item>
+        <item>비타민 A</item>
+        <item>티아민</item>
+        <item>리보플라민</item>
+        <item>칼슘</item>
+        <item>철분</item>
+    </string-array>
 </resources>
