@@ -27,6 +27,8 @@ public class MealDetailsFragment extends Fragment {
     static String[] ARG_PARAMS;
     // TODO: Rename and change types of parameters
     private String[] mParams;
+    private String[] OriginTitles;
+    private String[] NutrinetTitles;
     private OnFragmentInteractionListener mListener;
 
     public MealDetailsFragment() {
@@ -61,12 +63,24 @@ public class MealDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        OriginTitles = getActivity().getResources().getStringArray(R.array.array_origin);
+        NutrinetTitles = getActivity().getResources().getStringArray(R.array.array_nutrinets);
+        String OriginString = "";
+        String NutrinetsString = "";
         // Inflate the layout for this fragment
         View Layout = inflater.inflate(R.layout.fragment_meal_details, container, false);
         TextView MealText = (TextView)Layout.findViewById(R.id.mealtxt);
         TextView OriginText = (TextView)Layout.findViewById(R.id.origintxt);
         TextView NutrientsText = (TextView)Layout.findViewById(R.id.nutrientstxt);
         MealText.setText(mParams[1]);
+        for(int i=2; i<14; i++){
+            OriginString += OriginTitles[i-2]+" : "+mParams[i]+"\n";
+        }
+        OriginText.setText(OriginString);
+        for(int i=14; i<123; i++){
+            NutrinetsString += NutrinetTitles[i-14]+" : "+mParams[i]+"\n";
+        }
+        NutrientsText.setText(NutrinetsString);
         return Layout;
     }
 
