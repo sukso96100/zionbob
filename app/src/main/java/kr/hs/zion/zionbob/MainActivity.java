@@ -72,8 +72,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                shareMealData();
             }
         });
 
@@ -340,7 +339,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(TAG, "GOT DATA");
                     // Caculate Average Rate
                     float Sum = 0;
-                    for(int i=0; i<object.getList("rates").size(); i++){
+                    for (int i = 0; i < object.getList("rates").size(); i++) {
                         Sum += (double) object.getList("rates").get(i);
                     }
                     float Average = Sum / object.getList("rates").size();
@@ -350,5 +349,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    void shareMealData(){
+        String MEALSTRING = "";
+        MEALSTRING += getResources().getString(R.string.app_name);
+        MEALSTRING += " - " + year+"."+month+"."+day + "\n\n";
+        MEALSTRING += "\n" + getResources().getString(R.string.lunch);
+        MEALSTRING += "(" + getResources().getString(R.string.average) + " : " + LunchAvr.getText().toString() + ")";
+        MEALSTRING += "\n" + LunchTxt.getText().toString() + "\n\n";
+        MEALSTRING += "\n" + getResources().getString(R.string.dinner);
+        MEALSTRING += "(" + getResources().getString(R.string.average) + " : " + DinnerAvr.getText().toString() + ")";
+        MEALSTRING += "\n" + DinnerTxt.getText().toString();
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, MEALSTRING);
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
     }
 }
