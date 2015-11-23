@@ -37,4 +37,7 @@
         <item>칼슘</item>
         <item>철분</item>
     </string-array>
+    <string name="title_activity_my_review">리뷰 추가 또는 수정하기</string>
+    <string name="average">평균</string>
+    <string name="myreview">나의 리뷰</string>
 </resources>

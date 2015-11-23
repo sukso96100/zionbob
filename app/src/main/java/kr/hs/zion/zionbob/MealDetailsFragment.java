@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import org.w3c.dom.Text;
  * create an instance of this fragment.
  */
 public class MealDetailsFragment extends Fragment {
+    static String TAG = "MealDetailsFragment";
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     static String[] ARG_PARAMS;
@@ -36,13 +38,15 @@ public class MealDetailsFragment extends Fragment {
     }
 
     // TODO: Rename and change types and number of parameters
-    public static MealDetailsFragment newInstance(String[] DATA) {
+    public static MealDetailsFragment newInstance(String[] DATA, Context context) {
         // set passed data as arguments
         MealDetailsFragment fragment = new MealDetailsFragment();
         Bundle args = new Bundle();
-        ARG_PARAMS = MealDataUtil.ARG_PARAMS;
+        ARG_PARAMS = context.getResources().getStringArray(R.array.array_params);
+        Log.d(TAG, DATA.toString());
+        Log.d(TAG, ARG_PARAMS.toString());
         for(int i=0; i<23; i++){
-            args.putString(ARG_PARAMS[0], DATA[i]);
+            args.putString(ARG_PARAMS[i], DATA[i]);
         }
         fragment.setArguments(args);
         return fragment;
@@ -75,11 +79,15 @@ public class MealDetailsFragment extends Fragment {
         // Show Informations
         MealText.setText(mParams[1]);
         for(int i=2; i<14; i++){
-            OriginString += OriginTitles[i-2]+" : "+mParams[i]+"\n";
+            if(mParams[i].length()>0) {
+                OriginString += OriginTitles[i - 2] + " : " + mParams[i] + "\n";
+            }
         }
         OriginText.setText(OriginString);
-        for(int i=14; i<123; i++){
-            NutrinetsString += NutrinetTitles[i-14]+" : "+mParams[i]+"\n";
+        for(int i=14; i<23; i++){
+            if(mParams[i].length()>0) {
+                NutrinetsString += NutrinetTitles[i - 14] + " : " + mParams[i] + "\n";
+            }
         }
         NutrientsText.setText(NutrinetsString);
         return Layout;

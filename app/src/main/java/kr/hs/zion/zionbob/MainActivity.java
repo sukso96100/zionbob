@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        PARAMS = MealDataUtil.ARG_PARAMS;
+        PARAMS = getResources().getStringArray(R.array.array_params);
 
         SRL = (SwipeRefreshLayout)findViewById(R.id.srl);
         LunchCV = (CardView)findViewById(R.id.lunchcard);

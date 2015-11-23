@@ -1,5 +1,6 @@
 package kr.hs.zion.zionbob;
 
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -23,6 +24,7 @@ import java.util.List;
  */
 public class DetailsActivity extends AppCompatActivity
 implements MealDetailsFragment.OnFragmentInteractionListener, ReviewsFragment.OnFragmentInteractionListener{
+    Context mContext = DetailsActivity.this;
 
     private Toolbar toolbar;
     private TabLayout tabLayout;
@@ -42,23 +44,24 @@ implements MealDetailsFragment.OnFragmentInteractionListener, ReviewsFragment.On
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // get passed data
+        PARAMS = getResources().getStringArray(R.array.array_params);
+        DATA = new String[23];
+        for(int i=0; i<23; i++){
+            DATA[i] = getIntent().getStringExtra(PARAMS[i]);
+        }
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        // get passed data
-        PARAMS = MealDataUtil.ARG_PARAMS;
-        DATA = new String[23];
-        for(int i=0; i<23; i++){
-            DATA[i] = getIntent().getStringExtra(PARAMS[i]);
-        }
+
     }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new MealDetailsFragment().newInstance(DATA), getResources().getString(R.string.tab_details_details));
+        adapter.addFragment(new MealDetailsFragment().newInstance(DATA, mContext), getResources().getString(R.string.tab_details_details));
         adapter.addFragment(new ReviewsFragment(), getResources().getString(R.string.tab_details_reviews));
         viewPager.setAdapter(adapter);
     }

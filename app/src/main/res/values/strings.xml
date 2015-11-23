@@ -40,4 +40,32 @@
         <item>Calcium</item>
         <item>Iron</item>
     </string-array>
+    <string-array name="array_params">
+        <item>date</item>
+        <item>meal</item>
+        <item>riceorigin</item>
+        <item>kimchiorigin</item>
+        <item>redpepperorigin</item>
+        <item>beeforigin</item>
+        <item>porkorigin</item>
+        <item>chickenorigin</item>
+        <item>duckorigin</item>
+        <item>probeeforigin</item>
+        <item>proporkorigin</item>
+        <item>prochickenorigin</item>
+        <item>produckorigin</item>
+        <item>notes</item>
+        <item>energy</item>
+        <item>carbohydrate</item>
+        <item>protein</item>
+        <item>fat</item>
+        <item>vitamina</item>
+        <item>thiamin</item>
+        <item>riboflavin</item>
+        <item>calcium</item>
+        <item>iron</item>
+    </string-array>
+    <string name="title_activity_my_review">Add or edit your review</string>
+    <string name="average">Average</string>
+    <string name="myreview">My Review</string>
 </resources>
