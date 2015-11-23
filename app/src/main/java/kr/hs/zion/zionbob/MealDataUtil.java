@@ -54,6 +54,7 @@ public class MealDataUtil {
     String[] Calcium = new String[7];
     String[] Iron = new String[7];
 
+    boolean NOMEALROW = false;
 
     //ProvienceCode 시/도 교육청 코드
     // SchoolCode 학교 코드
@@ -102,142 +103,282 @@ public class MealDataUtil {
             Log.d(TAG, HeadCcount[i]);
         }
 
+        // ERR! : When No Meal Row
         // Get Meal
         for(int i=0; i<7; i++){
-            Meal[i] = Trs.get(2).getElementsByClass("textC").get(i).text();
+            try{
+                Meal[i] = Trs.get(2).getElementsByClass("textC").get(i).text();
+                NOMEALROW = false;
+            }catch (Exception e){
+                Meal[i] = "";
+                NOMEALROW = true;
+            }
+
             Log.d(TAG, Meal[i]);
         }
 
         // Get RiceOrigin
         for(int i=0; i<7; i++){
-            RiceOrigin[i] = Trs.get(4).getElementsByClass("textC").get(i).text();
-            Log.d(TAG, RiceOrigin[i]);
+            if(NOMEALROW){
+                RiceOrigin[i] = "";
+                Log.d(TAG, RiceOrigin[i]);
+            }else{
+                RiceOrigin[i] = Trs.get(4).getElementsByClass("textC").get(i).text();
+                Log.d(TAG, RiceOrigin[i]);
+            }
+
         }
 
         // Get KimchiOrigin
         for(int i=0; i<7; i++){
-            KimchiOrigin[i] = Trs.get(5).getElementsByClass("textC").get(i).text();
-            Log.d(TAG, KimchiOrigin[i]);
+            if(NOMEALROW){
+                KimchiOrigin[i] = "";
+                Log.d(TAG, KimchiOrigin[i]);
+            }else{
+                KimchiOrigin[i] = Trs.get(5).getElementsByClass("textC").get(i).text();
+                Log.d(TAG, KimchiOrigin[i]);
+            }
+
         }
 
         // Get RedPepperOrigin
         for(int i=0; i<7; i++){
-            RedPepperOrigin[i] = Trs.get(6).getElementsByClass("textC").get(i).text();
-            Log.d(TAG, RedPepperOrigin[i]);
+            if(NOMEALROW){
+                RedPepperOrigin[i] = "";
+                Log.d(TAG, RedPepperOrigin[i]);
+            }else{
+                RedPepperOrigin[i] = Trs.get(6).getElementsByClass("textC").get(i).text();
+                Log.d(TAG, RedPepperOrigin[i]);
+            }
+
         }
 
         // Get BeefOrigin
         for(int i=0; i<7; i++){
-            BeefOrigin[i] = Trs.get(7).getElementsByClass("textC").get(i).text();
-            Log.d(TAG, BeefOrigin[i]);
+            if(NOMEALROW){
+                BeefOrigin[i] = "";
+                Log.d(TAG, BeefOrigin[i]);
+            }else{
+                BeefOrigin[i] = Trs.get(7).getElementsByClass("textC").get(i).text();
+                Log.d(TAG, BeefOrigin[i]);
+            }
+
         }
 
         // Get PorkOrigin
         for(int i=0; i<7; i++){
-            PorkOrigin[i] = Trs.get(8).getElementsByClass("textC").get(i).text();
-            Log.d(TAG, PorkOrigin[i]);
+            if(NOMEALROW){
+                PorkOrigin[i] = "";
+                Log.d(TAG, PorkOrigin[i]);
+            }else{
+                PorkOrigin[i] = Trs.get(8).getElementsByClass("textC").get(i).text();
+                Log.d(TAG, PorkOrigin[i]);
+            }
+
         }
 
         // Get ChickenOrigin
         for(int i=0; i<7; i++){
-            ChickenOrigin[i] = Trs.get(9).getElementsByClass("textC").get(i).text();
-            Log.d(TAG, ChickenOrigin[i]);
+            if(NOMEALROW){
+                ChickenOrigin[i] = "";
+                Log.d(TAG, ChickenOrigin[i]);
+            }else{
+                ChickenOrigin[i] = Trs.get(9).getElementsByClass("textC").get(i).text();
+                Log.d(TAG, ChickenOrigin[i]);
+            }
+
         }
 
         // Get DuckOrigin
         for(int i=0; i<7; i++){
-            DuckOrigin[i] = Trs.get(10).getElementsByClass("textC").get(i).text();
-            Log.d(TAG, DuckOrigin[i]);
+            if(NOMEALROW){
+                DuckOrigin[i] = "";
+                Log.d(TAG, DuckOrigin[i]);
+            }else{
+                DuckOrigin[i] = Trs.get(10).getElementsByClass("textC").get(i).text();
+                Log.d(TAG, DuckOrigin[i]);
+            }
+
         }
 
         // Get ProcessedBeefOrigin
         for(int i=0; i<7; i++){
-            ProcessedBeefOrigin[i] = Trs.get(11).getElementsByClass("textC").get(i).text();
-            Log.d(TAG, ProcessedBeefOrigin[i]);
+            if(NOMEALROW){
+                ProcessedBeefOrigin[i] = "";
+                Log.d(TAG, ProcessedBeefOrigin[i]);
+            }else{
+                ProcessedBeefOrigin[i] = Trs.get(11).getElementsByClass("textC").get(i).text();
+                Log.d(TAG, ProcessedBeefOrigin[i]);
+            }
+
         }
 
         // Get ProcessedPorkOrigin
         for(int i=0; i<7; i++){
-            ProcessedPorkOrigin[i] = Trs.get(12).getElementsByClass("textC").get(i).text();
-            Log.d(TAG, ProcessedPorkOrigin[i]);
+            if(NOMEALROW){
+                ProcessedPorkOrigin[i] = "";
+                Log.d(TAG, ProcessedPorkOrigin[i]);
+            }else{
+                ProcessedPorkOrigin[i] = Trs.get(12).getElementsByClass("textC").get(i).text();
+                Log.d(TAG, ProcessedPorkOrigin[i]);
+            }
+
         }
 
         // Get ProcessedChickenOrigin
         for(int i=0; i<7; i++){
-            ProcessedChickenOrigin[i] = Trs.get(13).getElementsByClass("textC").get(i).text();
-            Log.d(TAG, ProcessedChickenOrigin[i]);
+            if(NOMEALROW){
+                ProcessedChickenOrigin[i] = "";
+                Log.d(TAG, ProcessedChickenOrigin[i]);
+            }else{
+                ProcessedChickenOrigin[i] = Trs.get(13).getElementsByClass("textC").get(i).text();
+                Log.d(TAG, ProcessedChickenOrigin[i]);
+            }
+
         }
 
         // Get ProcessedDuckOrigin
         for(int i=0; i<7; i++){
-            ProcessedDuckOrigin[i] = Trs.get(14).getElementsByClass("textC").get(i).text();
-            Log.d(TAG, ProcessedDuckOrigin[i]);
+            if(NOMEALROW){
+                ProcessedDuckOrigin[i] = "";
+                Log.d(TAG, ProcessedDuckOrigin[i]);
+            }else{
+                ProcessedDuckOrigin[i] = Trs.get(14).getElementsByClass("textC").get(i).text();
+                Log.d(TAG, ProcessedDuckOrigin[i]);
+            }
+
         }
 
         // Get notes
         for(int i=0; i<7; i++){
-            Notes[i] = Trs.get(15).getElementsByClass("textC").get(i).text();
-            Log.d(TAG, Notes[i]);
+            if(NOMEALROW){
+                Notes[i] = "";
+                Log.d(TAG, Notes[i]);
+            }else{
+                Notes[i] = Trs.get(15).getElementsByClass("textC").get(i).text();
+                Log.d(TAG, Notes[i]);
+            }
+
         }
 
         // Get Energy
         for(int i=0; i<7; i++){
-            Energy [i] = Trs.get(17).getElementsByClass("textC").get(i).text();
-            Log.d(TAG, Energy [i]);
+            if(NOMEALROW){
+                Energy [i] = "";
+                Log.d(TAG, Energy [i]);
+            }else{
+                Energy [i] = Trs.get(17).getElementsByClass("textC").get(i).text();
+                Log.d(TAG, Energy [i]);
+            }
+
         }
 
         // Get Carbohydrate
         for(int i=0; i<7; i++){
-            Carbohydrate[i] = Trs.get(18).getElementsByClass("textC").get(i).text();
-            Log.d(TAG, Carbohydrate[i]);
+            if(NOMEALROW){
+                Carbohydrate[i] = "";
+                Log.d(TAG, Carbohydrate[i]);
+            }else{
+                Carbohydrate[i] = Trs.get(18).getElementsByClass("textC").get(i).text();
+                Log.d(TAG, Carbohydrate[i]);
+            }
+
         }
 
         // Get Protein
         for(int i=0; i<7; i++){
-            Protein[i] = Trs.get(19).getElementsByClass("textC").get(i).text();
-            Log.d(TAG, Protein[i]);
+            if(NOMEALROW){
+                Protein[i] = "";
+                Log.d(TAG, Protein[i]);
+            }else{
+                Protein[i] = Trs.get(19).getElementsByClass("textC").get(i).text();
+                Log.d(TAG, Protein[i]);
+            }
+
         }
 
         // Get Fat
         for(int i=0; i<7; i++){
-            Fat[i] = Trs.get(20).getElementsByClass("textC").get(i).text();
-            Log.d(TAG, Fat[i]);
+            if(NOMEALROW){
+                Fat[i] = "";
+                Log.d(TAG, Fat[i]);
+            }else{
+                Fat[i] = Trs.get(20).getElementsByClass("textC").get(i).text();
+                Log.d(TAG, Fat[i]);
+            }
+
         }
 
         // Get VitaminA
         for(int i=0; i<7; i++){
-            VitaminA[i] = Trs.get(21).getElementsByClass("textC").get(i).text();
-            Log.d(TAG, VitaminA[i]);
+            if(NOMEALROW){
+                VitaminA[i] = "";
+                Log.d(TAG, VitaminA[i]);
+            }else{
+                VitaminA[i] = Trs.get(21).getElementsByClass("textC").get(i).text();
+                Log.d(TAG, VitaminA[i]);
+            }
+
         }
 
         // Get Thiamin
         for(int i=0; i<7; i++){
-            Thiamin[i] = Trs.get(22).getElementsByClass("textC").get(i).text();
-            Log.d(TAG, Thiamin[i]);
+            if(NOMEALROW){
+                Thiamin[i] = "";
+                Log.d(TAG, Thiamin[i]);
+            }else{
+                Thiamin[i] = Trs.get(22).getElementsByClass("textC").get(i).text();
+                Log.d(TAG, Thiamin[i]);
+            }
+
         }
 
         // Get Riboflavin
         for(int i=0; i<7; i++){
-            Riboflavin[i] = Trs.get(23).getElementsByClass("textC").get(i).text();
-            Log.d(TAG, Riboflavin[i]);
+            if(NOMEALROW){
+                Riboflavin[i] = "";
+                Log.d(TAG, Riboflavin[i]);
+            }else{
+                Riboflavin[i] = Trs.get(23).getElementsByClass("textC").get(i).text();
+                Log.d(TAG, Riboflavin[i]);
+            }
+
         }
 
         // Get VitaminC
         for(int i=0; i<7; i++){
-            VitaminC[i] = Trs.get(24).getElementsByClass("textC").get(i).text();
-            Log.d(TAG, VitaminC[i]);
+            if(NOMEALROW){
+                VitaminC[i] = "";
+                Log.d(TAG, VitaminC[i]);
+            }else{
+                VitaminC[i] = Trs.get(24).getElementsByClass("textC").get(i).text();
+                Log.d(TAG, VitaminC[i]);
+            }
+
         }
 
         // Get Calcium
         for(int i=0; i<7; i++){
-            Calcium[i] = Trs.get(25).getElementsByClass("textC").get(i).text();
-            Log.d(TAG, Calcium[i]);
+            if(NOMEALROW){
+                Calcium[i] = "";
+                Log.d(TAG, Calcium[i]);
+            }else{
+                Calcium[i] = Trs.get(25).getElementsByClass("textC").get(i).text();
+                Log.d(TAG, Calcium[i]);
+            }
+
         }
 
         // Get Iron
         for(int i=0; i<7; i++){
-            Iron[i] = Trs.get(26).getElementsByClass("textC").get(i).text();
-            Log.d(TAG, Iron[i]);
+            if(NOMEALROW){
+                Iron[i] = "";
+                Log.d(TAG, Iron[i]);
+            }else{
+                Iron[i] = Trs.get(26).getElementsByClass("textC").get(i).text();
+                Log.d(TAG, Iron[i]);
+            }
+
         }
     }
 }
