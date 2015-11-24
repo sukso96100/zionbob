@@ -1,4 +1,4 @@
-package kr.hs.zion.zionbob;
+package kr.hs.zion.zionbob.ui;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +12,8 @@ import android.widget.TextView;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+
+import kr.hs.zion.zionbob.R;
 
 /**
  * Created by youngbin on 15. 11. 23.

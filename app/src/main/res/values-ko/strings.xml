@@ -52,4 +52,5 @@
     <string name="from_cache">캐시로부터 불러오는 중...</string>
     <string name="refresh">새로고침</string>
     <string name="network_needed">네트워크 연결이 필요한 작업입니다.</string>
+    <string name="pref_alarm">푸시알림으로 식단 정보 받기(준비중)</string>
 </resources>

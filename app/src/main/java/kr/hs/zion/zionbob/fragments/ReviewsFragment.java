@@ -1,15 +1,12 @@
-package kr.hs.zion.zionbob;
+package kr.hs.zion.zionbob.fragments;
 
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,15 +17,18 @@ import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+
+import kr.hs.zion.zionbob.activities.MyReviewActivity;
+import kr.hs.zion.zionbob.util.NetworkChecker;
+import kr.hs.zion.zionbob.R;
+import kr.hs.zion.zionbob.ui.ReviewsAdapter;
+import kr.hs.zion.zionbob.util.GuidTool;
 
 
 public class ReviewsFragment extends Fragment {

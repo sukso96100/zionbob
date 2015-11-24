@@ -1,4 +1,4 @@
-package kr.hs.zion.zionbob;
+package kr.hs.zion.zionbob.data;
 
 import io.realm.RealmObject;
 

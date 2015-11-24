@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.About"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:src="@mipmap/ic_launcher"
+        android:gravity="center_horizontal"
+        android:padding="8dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:gravity="center_horizontal"
+        android:padding="8dp"
+        android:textSize="24dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="B1"
+        android:gravity="center_horizontal"
+        android:padding="4dp"
+        android:id="@+id/version"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Youngbin Han(sukso96100.gmail.com)\ngithub.com/sukso96100/zionbob\nyoungbin.xyz"
+        android:gravity="center_horizontal"
+        android:padding="4dp"/>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pref_alarm"
+        android:id="@+id/checkBox"
+        android:layout_gravity="center_horizontal"
+        android:enabled="false"/>
+
+</LinearLayout>

@@ -1,12 +1,12 @@
-package kr.hs.zion.zionbob;
+package kr.hs.zion.zionbob.data;
 
 import android.content.Context;
 import android.util.Log;
 
 import io.realm.Realm;
-import io.realm.RealmObject;
 import io.realm.RealmQuery;
-import io.realm.RealmResults;
+import kr.hs.zion.zionbob.R;
+import kr.hs.zion.zionbob.data.MealDataCacheModel;
 
 /**
  * Created by youngbin on 15. 11. 24.

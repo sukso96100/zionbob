@@ -1,4 +1,4 @@
-package kr.hs.zion.zionbob;
+package kr.hs.zion.zionbob.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -5,6 +5,8 @@ import android.util.Log;
 
 import com.parse.Parse;
 
+import kr.hs.zion.zionbob.util.GuidTool;
+
 /**
  * Created by youngbin on 15. 11. 23.
  */
