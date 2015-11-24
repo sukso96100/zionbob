@@ -1,7 +1,8 @@
 # zionbob
 
 시온고등학교 급식 식단 조희 및 평가 기능이 있는 앱 입니다.
-후https://play.google.com/store/apps/details?id=kr.hs.zion.zionbob
+
+https://play.google.com/store/apps/details?id=kr.hs.zion.zionbob
 
 ## License
 MIT License
