@@ -4,7 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -41,11 +44,14 @@ public class ReviewsFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    View Layout;
+    Button Refresh;
+    Button AddReview;
     View EmptyView;
     private ListView LV;
     private ReviewsAdapter RA;
     String GUID;
+    SwipeRefreshLayout Layout;
+    View CurrentHeaderView = null;
 
     public ReviewsFragment() {
         // Required empty public constructor
@@ -75,19 +81,46 @@ public class ReviewsFragment extends Fragment {
         GuidTool GT = new GuidTool(getActivity());
         GUID = GT.getGUID();
         // Inflate the layout for this fragment
-        Layout = inflater.inflate(R.layout.fragment_reviews, container, false);
+        Layout = (SwipeRefreshLayout)inflater.inflate(R.layout.fragment_reviews, container, false);
         EmptyView = (View)Layout.findViewById(R.id.empty);
-        Button AddReview = (Button) EmptyView.findViewById(R.id.button);
+        AddReview = (Button) EmptyView.findViewById(R.id.button);
+        Refresh = (Button) EmptyView.findViewById(R.id.refreshbutton);
+
+        LV = (ListView)Layout.findViewById(R.id.reviews);
+        LV.setEmptyView(EmptyView);
+
+        return Layout;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
         AddReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openMyReview(mDate + "_" + mMealType);
+                NetworkChecker NetCheck = new NetworkChecker(getActivity());
+                if(NetCheck.isNetworkConnected()){
+                    openMyReview(mDate + "_" + mMealType);
+                }else{
+                    Snackbar.make(Layout, getActivity().getResources().getString(R.string.network_needed),
+                            Snackbar.LENGTH_SHORT).show();
+                }
             }
         });
-        LV = (ListView)Layout.findViewById(R.id.reviews);
-        LV.setEmptyView(EmptyView);
+        Refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadReviews(mDate, mMealType);
+            }
+        });
+        Layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadReviews(mDate, mMealType);
+            }
+        });
         loadReviews(mDate, mMealType);
-        return Layout;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -120,17 +153,25 @@ public class ReviewsFragment extends Fragment {
     }
 
     void loadReviews(final String Date, final int mealType){
+        Layout.setRefreshing(true);
+        Snackbar.make(Layout, getActivity().getResources().getString(R.string.loading), Snackbar.LENGTH_SHORT).show();
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Reviews");
         query.whereEqualTo("date", Date + "_" + mealType);
         query.getFirstInBackground(new GetCallback<ParseObject>() {
             public void done(ParseObject object, ParseException e) {
                 if (object == null) {
                     Log.d(TAG, "The getFirst request failed.");
-
+                    Snackbar.make(Layout,getActivity().getResources().getString(R.string.noreview),Snackbar.LENGTH_SHORT).show();
+                    Layout.setRefreshing(false);
                 } else {
+                    Layout.setRefreshing(false);
                     Log.d(TAG, "Retrieved the object.");
                     int myReviewPos = findMyReview(GUID,object.getList("guids"));
-                    LV.addHeaderView(getHeader(object.getList("guids"), object.getList("rates"), object.getList("reviews"), myReviewPos));
+                    if(CurrentHeaderView!=null) {
+                        LV.removeHeaderView(CurrentHeaderView);
+                    }
+                    CurrentHeaderView = getHeader(object.getList("guids"), object.getList("rates"), object.getList("reviews"), myReviewPos);
+                    LV.addHeaderView(CurrentHeaderView);
                     RA = new ReviewsAdapter(getActivity(),
                             object.getList("guids"),object.getList("rates"),object.getList("reviews"));
                     LV.setAdapter(RA);
@@ -145,6 +186,7 @@ public class ReviewsFragment extends Fragment {
                     });
                 }
             }
+
         });
     }
 

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     int lunch = 2;
     int dinner = 3;
 
+    CoordinatorLayout Root;
     SwipeRefreshLayout SRL;
     CardView LunchCV;
     TextView LunchAvr;
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Root = (CoordinatorLayout)findViewById(R.id.root);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -179,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
 
     // start load meal data
     void getMealData(){
+        Snackbar.make(Root,getResources().getString(R.string.loading),Snackbar.LENGTH_SHORT).show();
         LunchAvr.setText("0.0");
         DinnerAvr.setText("0.0");
         SRL.setRefreshing(true);
@@ -217,6 +221,7 @@ public class MainActivity extends AppCompatActivity {
                 // Cache Data
                 Cache.updateCache(year+"."+month+"."+day+"_2",LunchObj.Meal[dayofweek],
                         processOriginData(LunchObj,dayofweek), processNutrientsData(LunchObj, dayofweek));
+                LoadFromCache = false;
                 getDinner();
             }
 
@@ -225,8 +230,10 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "Failed Loading Lunch Data");
                 Log.e(TAG, error.toString());
                 // Load From Cache
+                Snackbar.make(Root,getResources().getString(R.string.from_cache),Snackbar.LENGTH_SHORT).show();
                 LunchCache = Cache.getFromCache(year + "." + month + "." + day +"_2");
                 LunchTxt.setText(LunchCache[1]);
+                LoadFromCache = true;
                 getDinner();
             }
         });
@@ -264,7 +271,7 @@ public class MainActivity extends AppCompatActivity {
                 DinnerMduObj = DinnerObj;
                 Log.d(TAG, "Dinner Data Loaded");
                 SRL.setRefreshing(false);
-                setverage();
+                setAverage();
             }
 
             @Override
@@ -272,12 +279,13 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "Failed Loading Dinner Data");
                 Log.e(TAG, error.toString());
                 // Load From Cache
+                Snackbar.make(Root,getResources().getString(R.string.error_net_cache),Snackbar.LENGTH_SHORT).show();
                 DinnerCache = Cache.getFromCache(year + "." + month + "." + day + "_3");
                 DinnerTxt.setText(DinnerCache[1]);
                 LunchCV.setVisibility(View.VISIBLE);
                 DinnerCV.setVisibility(View.VISIBLE);
                 SRL.setRefreshing(false);
-                setverage();
+                setAverage();
             }
         });
     }
@@ -301,7 +309,7 @@ public class MainActivity extends AppCompatActivity {
         DPD.show();
     }
 
-    void setverage(){
+    void setAverage(){
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Reviews");
         query.whereEqualTo("date", year+"."+month+"."+day+"_2");
         query.getFirstInBackground(new GetCallback<ParseObject>() {
