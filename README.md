@@ -14,9 +14,9 @@ MIT License
   - v7 appcompat library
   - v7 cardview library
   - v4 Support Library
- - [Jsoup](jsoup.org)
+ - [Jsoup](http://jsoup.org)
  - [Parse SDK](https://parse.com/docs/downloads)
- - [Realm](realm.io)
+ - [Realm](http://realm.io)
  - [Android Asynchronous Http Client](http://loopj.com/android-async-http/)
 
 ## 개인정보 취급 관련.
