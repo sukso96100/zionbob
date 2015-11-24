@@ -63,8 +63,10 @@ implements MealDetailsFragment.OnFragmentInteractionListener, ReviewsFragment.On
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new MealDetailsFragment().newInstance(DATA, mContext), getResources().getString(R.string.tab_details_details));
-        adapter.addFragment(new ReviewsFragment().newInstance(DATA[0], mealtype), getResources().getString(R.string.tab_details_reviews));
+        adapter.addFragment(new MealDetailsFragment().newInstance(DATA, mContext),
+                getResources().getString(R.string.tab_details_details));
+        adapter.addFragment(new ReviewsFragment().newInstance(DATA[0], mealtype),
+                getResources().getString(R.string.tab_details_reviews));
         viewPager.setAdapter(adapter);
     }
 

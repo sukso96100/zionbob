@@ -103,42 +103,20 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // pass some(?) data to DetailsActivity
                 Intent LunchIntent = new Intent(mContext, DetailsActivity.class);
-
                 // Basic Info
-                LunchIntent.putExtra("loadfromcache", LoadFromCache);
                 LunchIntent.putExtra("mealtype", 2);
-                LunchIntent.putExtra(PARAMS[0], year + "." + month + "." + day);
+                LunchIntent.putExtra("date", year + "." + month + "." + day);
                 if (!LoadFromCache) {
                     // Meal
-                    LunchIntent.putExtra(PARAMS[1], LunchMduObj.Meal[dayofweek]);
+                    LunchIntent.putExtra("meal", LunchMduObj.Meal[dayofweek]);
                     // Origin of Ingredients
-                    LunchIntent.putExtra(PARAMS[2], LunchMduObj.RiceOrigin[dayofweek]);
-                    LunchIntent.putExtra(PARAMS[3], LunchMduObj.KimchiOrigin[dayofweek]);
-                    LunchIntent.putExtra(PARAMS[4], LunchMduObj.RedPepperOrigin[dayofweek]);
-                    LunchIntent.putExtra(PARAMS[5], LunchMduObj.BeefOrigin[dayofweek]);
-                    LunchIntent.putExtra(PARAMS[6], LunchMduObj.PorkOrigin[dayofweek]);
-                    LunchIntent.putExtra(PARAMS[7], LunchMduObj.ChickenOrigin[dayofweek]);
-                    LunchIntent.putExtra(PARAMS[8], LunchMduObj.DuckOrigin[dayofweek]);
-                    LunchIntent.putExtra(PARAMS[9], LunchMduObj.ProcessedBeefOrigin[dayofweek]);
-                    LunchIntent.putExtra(PARAMS[10], LunchMduObj.ProcessedPorkOrigin[dayofweek]);
-                    LunchIntent.putExtra(PARAMS[11], LunchMduObj.ProcessedChickenOrigin[dayofweek]);
-                    LunchIntent.putExtra(PARAMS[12], LunchMduObj.ProcessedDuckOrigin[dayofweek]);
-                    LunchIntent.putExtra(PARAMS[13], LunchMduObj.Notes[dayofweek]);
+                    LunchIntent.putExtra("origin", processOriginData(LunchMduObj, dayofweek));
                     // Nutrients
-                    LunchIntent.putExtra(PARAMS[14], LunchMduObj.Energy[dayofweek]);
-                    LunchIntent.putExtra(PARAMS[15], LunchMduObj.Carbohydrate[dayofweek]);
-                    LunchIntent.putExtra(PARAMS[16], LunchMduObj.Protein[dayofweek]);
-                    LunchIntent.putExtra(PARAMS[17], LunchMduObj.Fat[dayofweek]);
-                    LunchIntent.putExtra(PARAMS[18], LunchMduObj.VitaminA[dayofweek]);
-                    LunchIntent.putExtra(PARAMS[19], LunchMduObj.Thiamin[dayofweek]);
-                    LunchIntent.putExtra(PARAMS[20], LunchMduObj.Riboflavin[dayofweek]);
-                    LunchIntent.putExtra(PARAMS[21], LunchMduObj.VitaminC[dayofweek]);
-                    LunchIntent.putExtra(PARAMS[22], LunchMduObj.Calcium[dayofweek]);
-                    LunchIntent.putExtra(PARAMS[23], LunchMduObj.Iron[dayofweek]);
+                    LunchIntent.putExtra("nutrients", processNutrientsData(LunchMduObj, dayofweek));
                 }else{
-                    LunchIntent.putExtra("cachedmeal", LunchCache[1]);
-                    LunchIntent.putExtra("cachedorigin", LunchCache[2]);
-                    LunchIntent.putExtra("cachednutrients", LunchCache[3]);
+                    LunchIntent.putExtra("meal", LunchCache[1]);
+                    LunchIntent.putExtra("origin", LunchCache[2]);
+                    LunchIntent.putExtra("nutrients", LunchCache[3]);
                 }
                 startActivity(LunchIntent);
             }
@@ -149,34 +127,21 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // pass some(?) data to DetailsActivity
                 Intent DinnerIntent = new Intent(mContext, DetailsActivity.class);
+                // Basic Info
                 DinnerIntent.putExtra("mealtype", 3);
-                // Meal
                 DinnerIntent.putExtra(PARAMS[0], year + "." + month + "." + day);
-                DinnerIntent.putExtra(PARAMS[1], DinnerMduObj.Meal[dayofweek]);
-                // Origin of Ingredients
-                DinnerIntent.putExtra(PARAMS[2], DinnerMduObj.RiceOrigin[dayofweek]);
-                DinnerIntent.putExtra(PARAMS[3], DinnerMduObj.KimchiOrigin[dayofweek]);
-                DinnerIntent.putExtra(PARAMS[4], DinnerMduObj.RedPepperOrigin[dayofweek]);
-                DinnerIntent.putExtra(PARAMS[5], DinnerMduObj.BeefOrigin[dayofweek]);
-                DinnerIntent.putExtra(PARAMS[6], DinnerMduObj.PorkOrigin[dayofweek]);
-                DinnerIntent.putExtra(PARAMS[7], DinnerMduObj.ChickenOrigin[dayofweek]);
-                DinnerIntent.putExtra(PARAMS[8], DinnerMduObj.DuckOrigin[dayofweek]);
-                DinnerIntent.putExtra(PARAMS[9], DinnerMduObj.ProcessedBeefOrigin[dayofweek]);
-                DinnerIntent.putExtra(PARAMS[10], DinnerMduObj.ProcessedPorkOrigin[dayofweek]);
-                DinnerIntent.putExtra(PARAMS[11], DinnerMduObj.ProcessedChickenOrigin[dayofweek]);
-                DinnerIntent.putExtra(PARAMS[12], DinnerMduObj.ProcessedDuckOrigin[dayofweek]);
-                DinnerIntent.putExtra(PARAMS[13], DinnerMduObj.Notes[dayofweek]);
-                // Nutrients
-                DinnerIntent.putExtra(PARAMS[14], DinnerMduObj.Energy[dayofweek]);
-                DinnerIntent.putExtra(PARAMS[15], DinnerMduObj.Carbohydrate[dayofweek]);
-                DinnerIntent.putExtra(PARAMS[16], DinnerMduObj.Protein[dayofweek]);
-                DinnerIntent.putExtra(PARAMS[17], DinnerMduObj.Fat[dayofweek]);
-                DinnerIntent.putExtra(PARAMS[18], DinnerMduObj.VitaminA[dayofweek]);
-                DinnerIntent.putExtra(PARAMS[19], DinnerMduObj.Thiamin[dayofweek]);
-                DinnerIntent.putExtra(PARAMS[20], DinnerMduObj.Riboflavin[dayofweek]);
-                DinnerIntent.putExtra(PARAMS[21], DinnerMduObj.VitaminC[dayofweek]);
-                DinnerIntent.putExtra(PARAMS[22], DinnerMduObj.Calcium[dayofweek]);
-                DinnerIntent.putExtra(PARAMS[23], DinnerMduObj.Iron[dayofweek]);
+                if (!LoadFromCache) {
+                    // Meal
+                    DinnerIntent.putExtra(PARAMS[1], DinnerMduObj.Meal[dayofweek]);
+                    // Origin of Ingredients
+                    DinnerIntent.putExtra("origin", processOriginData(DinnerMduObj, dayofweek));
+                    // Nutrients
+                    DinnerIntent.putExtra("nutrients", processNutrientsData(DinnerMduObj, dayofweek));
+                }else{
+                    DinnerIntent.putExtra("meal", DinnerCache[1]);
+                    DinnerIntent.putExtra("origin", DinnerCache[2]);
+                    DinnerIntent.putExtra("nutrients", DinnerCache[3]);
+                }
                 startActivity(DinnerIntent);
             }
         });
@@ -284,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, RawData);
                 DinnerObj.parseData(RawData);
                 Log.d(TAG, DinnerObj.Meal[dayofweek]);
-                if(DinnerObj.Meal[dayofweek].length()<=1){
+                if (DinnerObj.Meal[dayofweek].length() <= 1) {
                     DinnerObj.Meal[dayofweek] = getResources().getString(R.string.error_meal_nodata);
                 }
                 DinnerTxt.setText(DinnerObj.Meal[dayofweek]);
@@ -301,7 +266,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "Failed Loading Dinner Data");
                 Log.e(TAG, error.toString());
                 // Load From Cache
-                DinnerCache = Cache.getFromCache(year + "." + month + "." + day +"_3");
+                DinnerCache = Cache.getFromCache(year + "." + month + "." + day + "_3");
                 DinnerTxt.setText(DinnerCache[1]);
                 LunchCV.setVisibility(View.VISIBLE);
                 DinnerCV.setVisibility(View.VISIBLE);
@@ -342,7 +307,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(TAG, "GOT DATA");
                     // Caculate Average Rate
                     float Sum = 0;
-                    for(int i=0; i<object.getList("rates").size(); i++){
+                    for (int i = 0; i < object.getList("rates").size(); i++) {
                         Sum += (double) object.getList("rates").get(i);
                     }
                     float Average = Sum / object.getList("rates").size();
@@ -389,5 +354,41 @@ public class MainActivity extends AppCompatActivity {
         sendIntent.putExtra(Intent.EXTRA_TEXT, MEALSTRING);
         sendIntent.setType("text/plain");
         startActivity(sendIntent);
+    }
+
+    String processOriginData(MealDataUtil MDU, int DayOfWeek){
+        String originData = "";
+        String[] OriginTitles = getResources().getStringArray(R.array.array_origin);
+        if(MDU.RiceOrigin[DayOfWeek].length()>0)originData += OriginTitles[0] + " : " + MDU.RiceOrigin[DayOfWeek] + "\n";
+        if(MDU.KimchiOrigin[DayOfWeek].length()>0)originData += OriginTitles[1] + " : " + MDU.KimchiOrigin[DayOfWeek] + "\n";
+        if(MDU.RedPepperOrigin[DayOfWeek].length()>0)originData += OriginTitles[2] + " : " + MDU.RedPepperOrigin[DayOfWeek] + "\n";
+        if(MDU.BeefOrigin[DayOfWeek].length()>0)originData += OriginTitles[3] + " : " + MDU.BeefOrigin[DayOfWeek] + "\n";
+        if(MDU.PorkOrigin[DayOfWeek].length()>0)originData += OriginTitles[4] + " : " + MDU.PorkOrigin[DayOfWeek] + "\n";
+        if(MDU.ChickenOrigin[DayOfWeek].length()>0)originData += OriginTitles[5] + " : " + MDU.ChickenOrigin[DayOfWeek] + "\n";
+        if(MDU.DuckOrigin[DayOfWeek].length()>0)originData += OriginTitles[6] + " : " + MDU.DuckOrigin[DayOfWeek] + "\n";
+        if(MDU.ProcessedBeefOrigin[DayOfWeek].length()>0)originData += OriginTitles[7] + " : " + MDU.ProcessedBeefOrigin[DayOfWeek] + "\n";
+        if(MDU.ProcessedPorkOrigin[DayOfWeek].length()>0)originData += OriginTitles[8] + " : " + MDU.ProcessedPorkOrigin[DayOfWeek] + "\n";
+        if(MDU.ProcessedChickenOrigin[DayOfWeek].length()>0)originData += OriginTitles[9] + " : " + MDU.ProcessedChickenOrigin[DayOfWeek] + "\n";
+        if(MDU.ProcessedDuckOrigin[DayOfWeek].length()>0)originData += OriginTitles[10] + " : " + MDU.ProcessedDuckOrigin[DayOfWeek] + "\n";
+        if(MDU.Notes[DayOfWeek].length()>0)originData += OriginTitles[11] + " : " + MDU.Notes[DayOfWeek] + "\n";
+
+        return originData;
+    }
+
+    String processNutrientsData(MealDataUtil MDU, int DayOfWeek){
+        String nutrientsData = "";
+        String[] NutrinetTitles = getResources().getStringArray(R.array.array_nutrinets);
+        if(MDU.Energy[DayOfWeek].length()>0)nutrientsData += NutrinetTitles[0] + " : " + MDU.Energy[DayOfWeek] + "\n";
+        if(MDU.Carbohydrate[DayOfWeek].length()>0)nutrientsData += NutrinetTitles[1] + " : " + MDU.Carbohydrate[DayOfWeek] + "\n";
+        if(MDU.Protein[DayOfWeek].length()>0)nutrientsData += NutrinetTitles[2] + " : " + MDU.Protein[DayOfWeek] + "\n";
+        if(MDU.Fat[DayOfWeek].length()>0)nutrientsData += NutrinetTitles[3] + " : " + MDU.Fat[DayOfWeek] + "\n";
+        if(MDU.VitaminA[DayOfWeek].length()>0)nutrientsData += NutrinetTitles[4] + " : " + MDU.VitaminA[DayOfWeek] + "\n";
+        if(MDU.Thiamin[DayOfWeek].length()>0)nutrientsData += NutrinetTitles[5] + " : " + MDU.Thiamin[DayOfWeek] + "\n";
+        if(MDU.Riboflavin[DayOfWeek].length()>0)nutrientsData += NutrinetTitles[6] + " : " + MDU.Riboflavin[DayOfWeek] + "\n";
+        if(MDU.VitaminC[DayOfWeek].length()>0)nutrientsData += NutrinetTitles[7] + " : " + MDU.VitaminC[DayOfWeek] + "\n";
+        if(MDU.Calcium[DayOfWeek].length()>0)nutrientsData += NutrinetTitles[8] + " : " + MDU.Calcium[DayOfWeek] + "\n";
+        if(MDU.Iron[DayOfWeek].length()>0)nutrientsData += NutrinetTitles[9] + " : " + MDU.Iron[DayOfWeek] + "\n";
+
+        return nutrientsData;
     }
 }

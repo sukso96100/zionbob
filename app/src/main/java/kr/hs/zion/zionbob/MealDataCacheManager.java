@@ -57,4 +57,5 @@ public class MealDataCacheManager {
         CachedData[3] = result.getNutrients();
         return CachedData;
     }
+
 }
