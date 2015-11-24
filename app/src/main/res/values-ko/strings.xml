@@ -55,5 +55,5 @@
     <string name="pref_alarm">푸시알림으로 식단 정보 받기(준비중)</string>
     <string name="welcome">환영합니다.\n계속하려면 아래 내용을 확인하신 후,\n"동의" 를 눌러 동의해 주세요.</string>
     <string name="agree">동의</string>
-    <string name="hello_blank_fragment" translatable="false">사용자 구별을 위해 앱에서 생성된 GUID, 작성하신 리뷰 그리고 부여하신 점수는 Parse.com 서버에 보관됩니다.</string>
+    <string name="agreement">사용자 구별을 위해 앱에서 생성된 GUID, 작성하신 리뷰 그리고 부여하신 점수는 Parse.com 서버에 보관됩니다.</string>
 </resources>
