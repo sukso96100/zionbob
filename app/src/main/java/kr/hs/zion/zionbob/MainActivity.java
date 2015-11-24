@@ -3,7 +3,9 @@ package kr.hs.zion.zionbob;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -31,6 +33,7 @@ import java.util.Calendar;
 import cz.msebera.android.httpclient.Header;
 import kr.hs.zion.zionbob.activities.About;
 import kr.hs.zion.zionbob.activities.DetailsActivity;
+import kr.hs.zion.zionbob.activities.FirstRunActivity;
 import kr.hs.zion.zionbob.data.MealDataCacheManager;
 
 public class MainActivity extends AppCompatActivity {
@@ -75,6 +78,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // FirstRun
+        SharedPreferences Pref = getSharedPreferences("pref", MODE_PRIVATE);
+        boolean FirstRun = Pref.getBoolean("firstrun", true);
+        if(FirstRun){
+            startActivity(new Intent(mContext, FirstRunActivity.class));
+            finish();
+        }
+
+
         Root = (CoordinatorLayout)findViewById(R.id.root);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
