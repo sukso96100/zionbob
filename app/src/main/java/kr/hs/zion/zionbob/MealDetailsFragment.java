@@ -38,16 +38,13 @@ public class MealDetailsFragment extends Fragment {
     }
 
     // TODO: Rename and change types and number of parameters
-    public static MealDetailsFragment newInstance(String[] DATA, Context context) {
+    public static MealDetailsFragment newInstance(String Meal, String Origin, String Nutrients, Context context) {
         // set passed data as arguments
         MealDetailsFragment fragment = new MealDetailsFragment();
         Bundle args = new Bundle();
-        ARG_PARAMS = context.getResources().getStringArray(R.array.array_params);
-        Log.d(TAG, DATA.toString());
-        Log.d(TAG, ARG_PARAMS.toString());
-        for(int i=0; i<24; i++){
-            args.putString(ARG_PARAMS[i], DATA[i]);
-        }
+        args.putString("meal", Meal);
+        args.putString("origin", Origin);
+        args.putString("nutrients", Nutrients);
         fragment.setArguments(args);
         return fragment;
     }

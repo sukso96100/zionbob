@@ -201,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
                 String RawData = null;
                 try {
                     RawData = new String(responseBody, "UTF-8");
-                    Log.d("JsonResponse", RawData);
+                    Log.d("Response", RawData);
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
@@ -214,6 +214,9 @@ public class MainActivity extends AppCompatActivity {
                 LunchTxt.setText(LunchObj.Meal[dayofweek]);
                 LunchMduObj = LunchObj;
                 Log.d(TAG, "Lunch Data Loaded");
+                // Cache Data
+                Cache.updateCache(year+"."+month+"."+day+"_2",LunchObj.Meal[dayofweek],
+                        processOriginData(LunchObj,dayofweek), processNutrientsData(LunchObj, dayofweek));
                 getDinner();
             }
 
@@ -242,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
                 String RawData = null;
                 try {
                     RawData = new String(responseBody, "UTF-8");
-                    Log.d("JsonResponse", RawData);
+                    Log.d("Response", RawData);
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
@@ -253,6 +256,9 @@ public class MainActivity extends AppCompatActivity {
                     DinnerObj.Meal[dayofweek] = getResources().getString(R.string.error_meal_nodata);
                 }
                 DinnerTxt.setText(DinnerObj.Meal[dayofweek]);
+                // Cache Data
+                Cache.updateCache(year+"."+month+"."+day+"_3",DinnerObj.Meal[dayofweek],
+                        processOriginData(DinnerObj,dayofweek), processNutrientsData(DinnerObj, dayofweek));
                 LunchCV.setVisibility(View.VISIBLE);
                 DinnerCV.setVisibility(View.VISIBLE);
                 DinnerMduObj = DinnerObj;

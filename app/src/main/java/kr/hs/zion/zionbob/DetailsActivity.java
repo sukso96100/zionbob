@@ -32,6 +32,10 @@ implements MealDetailsFragment.OnFragmentInteractionListener, ReviewsFragment.On
     String[] DATA;
     static String[] PARAMS;
     int mealtype;
+    String Date;
+    String Meal;
+    String Origin;
+    String Nutrients;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,11 @@ implements MealDetailsFragment.OnFragmentInteractionListener, ReviewsFragment.On
             DATA[i] = getIntent().getStringExtra(PARAMS[i]);
         }
         mealtype = getIntent().getIntExtra("mealtype",2);
+        Date = getIntent().getStringExtra("date");
+        Meal = getIntent().getStringExtra("meal");
+        Origin = getIntent().getStringExtra("origin");
+        Nutrients = getIntent().getStringExtra("nutrients");
+
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
@@ -63,7 +72,7 @@ implements MealDetailsFragment.OnFragmentInteractionListener, ReviewsFragment.On
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new MealDetailsFragment().newInstance(DATA, mContext),
+        adapter.addFragment(new MealDetailsFragment().newInstance(Meal, Origin, Nutrients, mContext),
                 getResources().getString(R.string.tab_details_details));
         adapter.addFragment(new ReviewsFragment().newInstance(DATA[0], mealtype),
                 getResources().getString(R.string.tab_details_reviews));
