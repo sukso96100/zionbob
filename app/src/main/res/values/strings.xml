@@ -29,7 +29,7 @@
         <item>Processed Duck</item>
         <item>Notes</item>
     </string-array>
-    <string-array name="array_nutrinets">
+    <string-array name="array_nutrinets" >
         <item>Energy(kcal)</item>
         <item>Carbohydrate(g)</item>
         <item>Protein(g)</item>
@@ -41,7 +41,7 @@
         <item>Calcium(mg)</item>
         <item>Iron(mg)</item>
     </string-array>
-    <string-array name="array_params">
+    <string-array name="array_params" translatable="false">
         <item>date</item>
         <item>meal</item>
         <item>riceorigin</item>
