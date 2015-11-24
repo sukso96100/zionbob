@@ -24,13 +24,12 @@ import java.util.List;
  */
 public class DetailsActivity extends AppCompatActivity
 implements MealDetailsFragment.OnFragmentInteractionListener, ReviewsFragment.OnFragmentInteractionListener{
+
     Context mContext = DetailsActivity.this;
 
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    String[] DATA;
-    static String[] PARAMS;
     int mealtype;
     String Date;
     String Meal;
@@ -50,11 +49,6 @@ implements MealDetailsFragment.OnFragmentInteractionListener, ReviewsFragment.On
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // get passed data
-        PARAMS = getResources().getStringArray(R.array.array_params);
-        DATA = new String[24];
-        for(int i=0; i<24; i++){
-            DATA[i] = getIntent().getStringExtra(PARAMS[i]);
-        }
         mealtype = getIntent().getIntExtra("mealtype",2);
         Date = getIntent().getStringExtra("date");
         Meal = getIntent().getStringExtra("meal");
@@ -74,7 +68,7 @@ implements MealDetailsFragment.OnFragmentInteractionListener, ReviewsFragment.On
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new MealDetailsFragment().newInstance(Meal, Origin, Nutrients, mContext),
                 getResources().getString(R.string.tab_details_details));
-        adapter.addFragment(new ReviewsFragment().newInstance(DATA[0], mealtype),
+        adapter.addFragment(new ReviewsFragment().newInstance(Date, mealtype),
                 getResources().getString(R.string.tab_details_reviews));
         viewPager.setAdapter(adapter);
     }

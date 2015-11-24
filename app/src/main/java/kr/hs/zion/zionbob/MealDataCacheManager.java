@@ -25,7 +25,7 @@ public class MealDataCacheManager {
     public void updateCache(String Date, String Meal,
                             String Origin, String Nutrients){
         RealmQuery<MealDataCacheModel> query = mRealm.where(MealDataCacheModel.class);
-        query.equalTo("date",Date);
+        query.equalTo("date",Date); //TODO - ERR! java.lang.IllegalArgumentException: Field 'date' does not exist.
         MealDataCacheModel result = query.findFirst();
         if(result==null){
             Log.d(TAG, "Caching New Data");
@@ -47,6 +47,7 @@ public class MealDataCacheManager {
     }
 
     public String[] getFromCache(String Date){
+        Log.d(TAG, "Loading From Cache");
         RealmQuery<MealDataCacheModel> query = mRealm.where(MealDataCacheModel.class);
         query.equalTo("date",Date);
         MealDataCacheModel result = query.findFirst();

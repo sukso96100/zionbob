@@ -27,10 +27,10 @@ public class MealDetailsFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     static String[] ARG_PARAMS;
+    String mMeal;
+    String mOrigin;
+    String mNutrients;
     // TODO: Rename and change types of parameters
-    private String[] mParams;
-    private String[] OriginTitles;
-    private String[] NutrinetTitles;
     private OnFragmentInteractionListener mListener;
 
     public MealDetailsFragment() {
@@ -54,39 +54,24 @@ public class MealDetailsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         // get arguments
         if (getArguments() != null) {
-            mParams = new String[24];
-            for(int i=0; i<24; i++){
-                mParams[i] = getArguments().getString(ARG_PARAMS[i]);
-            }
+            mMeal = getArguments().getString("meal");
+            mOrigin = getArguments().getString("origin");
+            mNutrients = getArguments().getString("nutrients");
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        OriginTitles = getActivity().getResources().getStringArray(R.array.array_origin);
-        NutrinetTitles = getActivity().getResources().getStringArray(R.array.array_nutrinets);
-        String OriginString = "";
-        String NutrinetsString = "";
         // Inflate the layout for this fragment
         View Layout = inflater.inflate(R.layout.fragment_meal_details, container, false);
         TextView MealText = (TextView)Layout.findViewById(R.id.mealtxt);
         TextView OriginText = (TextView)Layout.findViewById(R.id.origintxt);
         TextView NutrientsText = (TextView)Layout.findViewById(R.id.nutrientstxt);
         // Show Informations
-        MealText.setText(mParams[1]);
-        for(int i=2; i<14; i++){
-            if(mParams[i].length()>0) {
-                OriginString += OriginTitles[i - 2] + " : " + mParams[i] + "\n";
-            }
-        }
-        OriginText.setText(OriginString);
-        for(int i=14; i<24; i++){
-            if(mParams[i].length()>0) { //ERR!
-                NutrinetsString += NutrinetTitles[i - 14] + " : " + mParams[i] + "\n";
-            }
-        }
-        NutrientsText.setText(NutrinetsString);
+        MealText.setText(mMeal);
+        OriginText.setText(mOrigin);
+        NutrientsText.setText(mNutrients);
         return Layout;
     }
 
