@@ -100,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        PARAMS = getResources().getStringArray(R.array.array_params);
         Cache = new MealDataCacheManager(mContext);
 
         SRL = (SwipeRefreshLayout)findViewById(R.id.srl);
