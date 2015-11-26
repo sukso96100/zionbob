@@ -9,6 +9,13 @@ import kr.hs.zion.zionbob.R;
  * Created by youngbin on 15. 11. 26.
  */
 public class MealDataProcessor {
+
+    public static String processMealData(String MealString, Context c){
+        String ProcessedMealData = "";
+        ProcessedMealData = MealString.replaceAll(" ","\n");
+        return ProcessedMealData;
+    }
+
     public static String processOriginData(MealDataUtil MDU, int DayOfWeek, Context c){
         String originData = "";
         String[] OriginTitles = c.getResources().getStringArray(R.array.array_origin);

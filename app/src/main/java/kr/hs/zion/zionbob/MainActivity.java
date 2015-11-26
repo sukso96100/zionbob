@@ -233,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
                 if (LunchObj.Meal[dayofweek].length() <= 1) {
                     LunchObj.Meal[dayofweek] = getResources().getString(R.string.error_meal_nodata);
                 }
-                LunchTxt.setText(LunchObj.Meal[dayofweek]);
+                LunchTxt.setText(LunchObj.Meal[dayofweek].replaceAll(" ","\n"));
                 LunchMduObj = LunchObj;
                 Log.d(TAG, "Lunch Data Loaded");
                 // Cache Data
@@ -251,7 +251,7 @@ public class MainActivity extends AppCompatActivity {
                 // Load From Cache
                 Snackbar.make(Root, getResources().getString(R.string.from_cache), Snackbar.LENGTH_SHORT).show();
                 LunchCache = Cache.getFromCache(year + "." + month + "." + day + "_2");
-                LunchTxt.setText(LunchCache[1]);
+                LunchTxt.setText(LunchCache[1].replaceAll(" ","\n"));
                 LoadFromCache = true;
                 getDinner();
             }
@@ -281,7 +281,7 @@ public class MainActivity extends AppCompatActivity {
                 if (DinnerObj.Meal[dayofweek].length() <= 1) {
                     DinnerObj.Meal[dayofweek] = getResources().getString(R.string.error_meal_nodata);
                 }
-                DinnerTxt.setText(DinnerObj.Meal[dayofweek]);
+                DinnerTxt.setText(DinnerObj.Meal[dayofweek].replaceAll(" ","\n"));
                 // Cache Data
                 Cache.updateCache(year + "." + month + "." + day + "_3", DinnerObj.Meal[dayofweek],
                         MealDataProcessor.processOriginData(DinnerObj, dayofweek, mContext),
@@ -301,7 +301,7 @@ public class MainActivity extends AppCompatActivity {
                 // Load From Cache
                 Snackbar.make(Root, getResources().getString(R.string.error_net_cache), Snackbar.LENGTH_SHORT).show();
                 DinnerCache = Cache.getFromCache(year + "." + month + "." + day + "_3");
-                DinnerTxt.setText(DinnerCache[1]);
+                DinnerTxt.setText(DinnerCache[1].replaceAll(" ","\n"));
                 LunchCV.setVisibility(View.VISIBLE);
                 DinnerCV.setVisibility(View.VISIBLE);
                 SRL.setRefreshing(false);

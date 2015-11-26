@@ -4,7 +4,7 @@
     <item android:id="@+id/action_date" android:title="2015.11.21"
         android:orderInCategory="0" app:showAsAction="always|withText"
         />
-    <item android:id="@+id/action_about" android:title="About"
+    <item android:id="@+id/action_about" android:title="@string/about"
         android:orderInCategory="1" app:showAsAction="ifRoom"
         android:icon="@drawable/ic_info_24dp" />
 </menu>
