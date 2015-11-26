@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 
+import kr.hs.zion.zionbob.MainActivity;
 import kr.hs.zion.zionbob.R;
 
 /**
@@ -28,35 +29,17 @@ public class MealPushNotification {
      */
     private static final String NOTIFICATION_TAG = "MealPush";
 
-    /**
-     * Shows the notification, or updates a previously shown notification of
-     * this type, with the given parameters.
-     * <p/>
-     * TODO: Customize this method's arguments to present relevant content in
-     * the notification.
-     * <p/>
-     * TODO: Customize the contents of this method to tweak the behavior and
-     * presentation of meal push notifications. Make
-     * sure to follow the
-     * <a href="https://developer.android.com/design/patterns/notifications.html">
-     * Notification design guidelines</a> when doing so.
-     *
-     * @see #cancel(Context)
-     */
     public static void notify(final Context context,
-                              final String exampleString, final int number) {
+                              final String Ticker, final String Title, final String Text, final int number) {
         final Resources res = context.getResources();
 
         // This image is used as the notification's large icon (thumbnail).
         // TODO: Remove this if your notification has no relevant thumbnail.
-        final Bitmap picture = BitmapFactory.decodeResource(res, R.drawable.example_picture);
 
 
-        final String ticker = exampleString;
-        final String title = res.getString(
-                R.string.meal_push_notification_title_template, exampleString);
-        final String text = res.getString(
-                R.string.meal_push_notification_placeholder_text_template, exampleString);
+        final String ticker = Ticker;
+        final String title = Title;
+        final String text = Text;
 
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
 
@@ -78,7 +61,6 @@ public class MealPushNotification {
 
                         // Provide a large icon, shown with the notification in the
                         // notification drawer on devices running Android 3.0 or later.
-                .setLargeIcon(picture)
 
                         // Set ticker text (preview) information for this notification.
                 .setTicker(ticker)
@@ -102,7 +84,7 @@ public class MealPushNotification {
                         PendingIntent.getActivity(
                                 context,
                                 0,
-                                new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com")),
+                                new Intent(context, MainActivity.class),
                                 PendingIntent.FLAG_UPDATE_CURRENT))
 
                         // Show expanded text content on devices running Android 4.1 or
@@ -110,7 +92,7 @@ public class MealPushNotification {
                 .setStyle(new NotificationCompat.BigTextStyle()
                         .bigText(text)
                         .setBigContentTitle(title)
-                        .setSummaryText("Dummy summary text"))
+                        .setSummaryText(context.getResources().getString(R.string.push_info)))
 
                         // Automatically dismiss the notification when it is touched.
                 .setAutoCancel(true);
@@ -129,10 +111,7 @@ public class MealPushNotification {
         }
     }
 
-    /**
-     * Cancels any notifications of this type previously shown using
-     * {@link #notify(Context, String, int)}.
-     */
+
     @TargetApi(Build.VERSION_CODES.ECLAIR)
     public static void cancel(final Context context) {
         final NotificationManager nm = (NotificationManager) context

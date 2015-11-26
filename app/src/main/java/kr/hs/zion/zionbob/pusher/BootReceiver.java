@@ -15,7 +15,7 @@ public class BootReceiver extends BroadcastReceiver {
         // an Intent broadcast.
 
         SharedPreferences SP = context.getSharedPreferences("pref", Context.MODE_PRIVATE);
-        boolean isAlarmOn = SP.getBoolean("push", true);
+        boolean isAlarmOn = SP.getBoolean("push", false);
         MealAlarmManager MAM = new MealAlarmManager(context);
         if(isAlarmOn){
             MAM.registerAlarm();

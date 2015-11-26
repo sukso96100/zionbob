@@ -37,6 +37,8 @@ public class MealPushService extends Service {
     int dayofweek;
 
     MealDataCacheManager Cache;
+    
+    String DATE;
 
     public MealPushService() {
     }
@@ -61,14 +63,14 @@ public class MealPushService extends Service {
         final int mealtype = intent.getIntExtra("mealtype", 2);
 
         // Create Date String
-        String DATE = year+"."+month+"."+day;
+        DATE = year+"."+month+"."+day;
 
 
         Log.d(TAG, "Loading Lunch Data");
-        final MealDataUtil LunchObj = new MealDataUtil(ProvienceCode, SchooolCode,
+        final MealDataUtil MealObj = new MealDataUtil(ProvienceCode, SchooolCode,
                 SchoolTypeA, SchoolTypeB, mealtype, DATE);
         AsyncHttpClient MealClient = new AsyncHttpClient();
-        MealClient.get(LunchObj.getURL(), new AsyncHttpResponseHandler() {
+        MealClient.get(MealObj.getURL(), new AsyncHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -80,25 +82,33 @@ public class MealPushService extends Service {
                     e.printStackTrace();
                 }
                 Log.d(TAG, RawData);
-                LunchObj.parseData(RawData);
-                Log.d(TAG, LunchObj.Meal[dayofweek]);
-                if (LunchObj.Meal[dayofweek].length() <= 1) {
-                    LunchObj.Meal[dayofweek] = getResources().getString(R.string.error_meal_nodata);
+                MealObj.parseData(RawData);
+                Log.d(TAG, MealObj.Meal[dayofweek]);
+                if (MealObj.Meal[dayofweek].length() <= 1) {
+                    MealObj.Meal[dayofweek] = getResources().getString(R.string.error_meal_nodata);
                 }
-                LunchTxt.setText(LunchObj.Meal[dayofweek]);
-                LunchMduObj = LunchObj;
+                if(mealtype==2){
+                    MealPushNotification.notify(mContext,
+                            DATE+" - "+mContext.getResources().getString(R.string.lunch),
+                            DATE+" - "+mContext.getResources().getString(R.string.lunch),
+                            MealObj.Meal[dayofweek], 0);
+                }else if(mealtype==3){
+
+                }
+
                 Log.d(TAG, "Lunch Data Loaded");
                 // Cache Data
-                Cache.updateCache(year + "." + month + "." + day + "_2", LunchObj.Meal[dayofweek],
-                        MealDataProcessor.processOriginData(LunchObj, dayofweek, mContext),
-                        MealDataProcessor.processNutrientsData(LunchObj, dayofweek, mContext));
-                LoadFromCache = false;
-                getDinner();
+                Cache = new MealDataCacheManager(mContext);
+                Cache.updateCache(DATE+"_"+mealtype, MealObj.Meal[dayofweek],
+                        MealDataProcessor.processOriginData(MealObj, dayofweek, mContext),
+                        MealDataProcessor.processNutrientsData(MealObj, dayofweek, mContext));
+                stopSelf();
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 Log.d(TAG, "Failed Loading Meal Data");
+                stopSelf();
             }
         });
 

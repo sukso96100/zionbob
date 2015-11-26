@@ -38,7 +38,6 @@
         android:layout_height="wrap_content"
         android:text="@string/pref_alarm"
         android:id="@+id/checkBox"
-        android:layout_gravity="center_horizontal"
-        android:enabled="false"/>
+        android:layout_gravity="center_horizontal" />
 
 </LinearLayout>

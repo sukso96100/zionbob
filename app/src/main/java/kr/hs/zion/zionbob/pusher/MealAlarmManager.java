@@ -4,8 +4,11 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Toast;
 
 import java.util.Calendar;
+
+import kr.hs.zion.zionbob.R;
 
 /**
  * Created by youngbin on 15. 11. 24.
@@ -22,7 +25,7 @@ public class MealAlarmManager {
         // Get Alarm Manager
         AM = (AlarmManager)mContext.getSystemService(Context.ALARM_SERVICE);
     }
-    void registerAlarm(){
+    public void registerAlarm(){
 
         // Lunch Alarm Time
         Calendar mLunch = Calendar.getInstance();
@@ -49,14 +52,18 @@ public class MealAlarmManager {
 
         // Set Dinner Alarm
         AM.setRepeating(AlarmManager.RTC_WAKEUP, mDinner.getTimeInMillis(), AlarmManager.INTERVAL_DAY, DinnerPI);
+
+        Toast.makeText(mContext, mContext.getResources().getString(R.string.push_on), Toast.LENGTH_SHORT).show();
     }
 
-    void calcelAlarm(){
+    public void calcelAlarm(){
         for(int i=2; i<4; i++){
             // Calel Push Alarm
             Intent intent = new Intent(mContext, MealPushService.class);
             PendingIntent PI4CALCEL = PendingIntent.getService(mContext, i, intent, PendingIntent.FLAG_CANCEL_CURRENT);
             AM.cancel(PI4CALCEL);
+
+            Toast.makeText(mContext, mContext.getResources().getString(R.string.push_off), Toast.LENGTH_SHORT).show();
         }
     }
 }
