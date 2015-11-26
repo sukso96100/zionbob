@@ -1,12 +1,43 @@
 package kr.hs.zion.zionbob.pusher;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
+import android.support.design.widget.Snackbar;
+import android.util.Log;
+import android.view.View;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
+import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
 
+import cz.msebera.android.httpclient.Header;
+import kr.hs.zion.zionbob.MealDataUtil;
+import kr.hs.zion.zionbob.R;
+import kr.hs.zion.zionbob.data.MealDataCacheManager;
+import kr.hs.zion.zionbob.util.MealDataProcessor;
+
 public class MealPushService extends Service {
+
+    Context mContext = MealPushService.this;
+
+    String TAG = "MealPushService";
+
+    String ProvienceCode = "goe";
+    String SchooolCode = "J100000659";
+    int SchoolTypeA = 4;
+    String SchoolTypeB = "04";
+
+    int year;
+    int month;
+    int day;
+    int dayofweek;
+
+    MealDataCacheManager Cache;
+
     public MealPushService() {
     }
 
@@ -21,17 +52,55 @@ public class MealPushService extends Service {
 
         // Get Date of Today
         Calendar Cal = Calendar.getInstance();
-        int year = Cal.get(Calendar.YEAR);
-        int month = Cal.get(Calendar.MONTH);
-        int day = Cal.get(Calendar.DAY_OF_MONTH);
-        int dayofweek = Cal.get(Calendar.DAY_OF_WEEK);
+        year = Cal.get(Calendar.YEAR);
+        month = Cal.get(Calendar.MONTH);
+        day = Cal.get(Calendar.DAY_OF_MONTH);
+        dayofweek = Cal.get(Calendar.DAY_OF_WEEK);
 
         // Get Meal Type
-        int mealtype = intent.getIntExtra("mealtype",2);
+        final int mealtype = intent.getIntExtra("mealtype", 2);
 
         // Create Date String
         String DATE = year+"."+month+"."+day;
 
+
+        Log.d(TAG, "Loading Lunch Data");
+        final MealDataUtil LunchObj = new MealDataUtil(ProvienceCode, SchooolCode,
+                SchoolTypeA, SchoolTypeB, mealtype, DATE);
+        AsyncHttpClient MealClient = new AsyncHttpClient();
+        MealClient.get(LunchObj.getURL(), new AsyncHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                String RawData = null;
+                try {
+                    RawData = new String(responseBody, "UTF-8");
+                    Log.d("Response", RawData);
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                Log.d(TAG, RawData);
+                LunchObj.parseData(RawData);
+                Log.d(TAG, LunchObj.Meal[dayofweek]);
+                if (LunchObj.Meal[dayofweek].length() <= 1) {
+                    LunchObj.Meal[dayofweek] = getResources().getString(R.string.error_meal_nodata);
+                }
+                LunchTxt.setText(LunchObj.Meal[dayofweek]);
+                LunchMduObj = LunchObj;
+                Log.d(TAG, "Lunch Data Loaded");
+                // Cache Data
+                Cache.updateCache(year + "." + month + "." + day + "_2", LunchObj.Meal[dayofweek],
+                        MealDataProcessor.processOriginData(LunchObj, dayofweek, mContext),
+                        MealDataProcessor.processNutrientsData(LunchObj, dayofweek, mContext));
+                LoadFromCache = false;
+                getDinner();
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                Log.d(TAG, "Failed Loading Meal Data");
+            }
+        });
 
         return START_NOT_STICKY;
     }

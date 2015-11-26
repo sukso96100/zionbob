@@ -28,31 +28,31 @@ public class MealDataUtil {
     // Meal Data
     String[] Date = new String[7];
     String[] HeadCcount = new String[7];
-    String[] Meal = new String[7];
+    public String[] Meal = new String[7];
     // Origin of Ingredients Data
-    String[] RiceOrigin = new String[7];
-    String[] KimchiOrigin = new String[7];
-    String[] RedPepperOrigin = new String[7];
-    String[] BeefOrigin = new String[7];
-    String[] PorkOrigin = new String[7];
-    String[] ChickenOrigin = new String[7];
-    String[] DuckOrigin = new String[7];
-    String[] ProcessedBeefOrigin = new String[7];
-    String[] ProcessedPorkOrigin = new String[7];
-    String[] ProcessedChickenOrigin = new String[7];
-    String[] ProcessedDuckOrigin = new String[7];
-    String[] Notes = new String[7];
+    public String[] RiceOrigin = new String[7];
+    public String[] KimchiOrigin = new String[7];
+    public String[] RedPepperOrigin = new String[7];
+    public String[] BeefOrigin = new String[7];
+    public String[] PorkOrigin = new String[7];
+    public String[] ChickenOrigin = new String[7];
+    public String[] DuckOrigin = new String[7];
+    public String[] ProcessedBeefOrigin = new String[7];
+    public String[] ProcessedPorkOrigin = new String[7];
+    public String[] ProcessedChickenOrigin = new String[7];
+    public String[] ProcessedDuckOrigin = new String[7];
+    public String[] Notes = new String[7];
     // Nutrients Data
-    String[] Energy = new String[7];
-    String[] Carbohydrate = new String[7];
-    String[] Protein = new String[7];
-    String[] Fat = new String[7];
-    String[] VitaminA = new String[7];
-    String[] Thiamin = new String[7];
-    String[] Riboflavin = new String[7];
-    String[] VitaminC = new String[7];
-    String[] Calcium = new String[7];
-    String[] Iron = new String[7];
+    public String[] Energy = new String[7];
+    public String[] Carbohydrate = new String[7];
+    public String[] Protein = new String[7];
+    public String[] Fat = new String[7];
+    public String[] VitaminA = new String[7];
+    public String[] Thiamin = new String[7];
+    public String[] Riboflavin = new String[7];
+    public String[] VitaminC = new String[7];
+    public String[] Calcium = new String[7];
+    public String[] Iron = new String[7];
 
     boolean NOMEALROW = false;
 
