@@ -3,6 +3,7 @@ package kr.hs.zion.zionbob.pusher;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 
 public class BootReceiver extends BroadcastReceiver {
     public BootReceiver() {
@@ -12,6 +13,14 @@ public class BootReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         // TODO: This method is called when the BroadcastReceiver is receiving
         // an Intent broadcast.
-        throw new UnsupportedOperationException("Not yet implemented");
+
+        SharedPreferences SP = context.getSharedPreferences("pref", Context.MODE_PRIVATE);
+        boolean isAlarmOn = SP.getBoolean("push", true);
+        MealAlarmManager MAM = new MealAlarmManager(context);
+        if(isAlarmOn){
+            MAM.registerAlarm();
+        }else {
+            MAM.calcelAlarm();
+        }
     }
 }

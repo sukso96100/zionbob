@@ -63,8 +63,14 @@ public class MyReviewActivity extends AppCompatActivity {
                     Log.d(TAG, "POS : "+myReviewPos);
                     if(myReviewPos!=-1){
                     RB.setNumStars(5);
-                    double d = (double) object.getList("rates").get(myReviewPos);
-                    RB.setRating((float)d);
+                        try{
+                            double d = (double) object.getList("rates").get(myReviewPos);
+                            RB.setRating((float)d);
+                        }catch(Exception E){
+                            int d = (int) object.getList("rates").get(myReviewPos);
+                            RB.setRating((float)d);
+                        }
+
                     ET.setText((String)object.getList("reviews").get(myReviewPos));
                     }
                 }
