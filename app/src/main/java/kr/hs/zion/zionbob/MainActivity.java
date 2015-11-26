@@ -147,10 +147,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent DinnerIntent = new Intent(mContext, DetailsActivity.class);
                 // Basic Info
                 DinnerIntent.putExtra("mealtype", 3);
-                DinnerIntent.putExtra(PARAMS[0], year + "." + month + "." + day);
+                DinnerIntent.putExtra("date", year + "." + month + "." + day);
                 if (!LoadFromCache) {
                     // Meal
-                    DinnerIntent.putExtra(PARAMS[1], DinnerMduObj.Meal[dayofweek]);
+                    DinnerIntent.putExtra("meal", DinnerMduObj.Meal[dayofweek]);
                     // Origin of Ingredients
                     DinnerIntent.putExtra("origin", MealDataProcessor.processOriginData(DinnerMduObj, dayofweek, mContext));
                     // Nutrients

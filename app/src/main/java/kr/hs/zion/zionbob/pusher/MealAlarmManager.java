@@ -35,7 +35,7 @@ public class MealAlarmManager {
         // Intent For Lunch
         Intent LunchIntent = new Intent(mContext, MealPushService.class);
         LunchIntent.putExtra("mealtype", 2);
-        PendingIntent LunchPI = PendingIntent.getService(mContext, 1, LunchIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent LunchPI = PendingIntent.getService(mContext, 2, LunchIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         // Set Lunch Alarm
         AM.setRepeating(AlarmManager.RTC_WAKEUP, mLunch.getTimeInMillis(), AlarmManager.INTERVAL_DAY, LunchPI);
@@ -48,7 +48,7 @@ public class MealAlarmManager {
         // Intent For Dinner
         Intent DinnerIntent = new Intent(mContext, MealPushService.class);
         DinnerIntent.putExtra("mealtype", 3);
-        PendingIntent DinnerPI = PendingIntent.getService(mContext, 2, DinnerIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent DinnerPI = PendingIntent.getService(mContext, 3, DinnerIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         // Set Dinner Alarm
         AM.setRepeating(AlarmManager.RTC_WAKEUP, mDinner.getTimeInMillis(), AlarmManager.INTERVAL_DAY, DinnerPI);

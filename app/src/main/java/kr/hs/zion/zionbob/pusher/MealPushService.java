@@ -96,7 +96,7 @@ public class MealPushService extends Service {
 
                 }
 
-                Log.d(TAG, "Lunch Data Loaded");
+                Log.d(TAG, "Meal Data Loaded");
                 // Cache Data
                 Cache = new MealDataCacheManager(mContext);
                 Cache.updateCache(DATE+"_"+mealtype, MealObj.Meal[dayofweek],
@@ -112,6 +112,6 @@ public class MealPushService extends Service {
             }
         });
 
-        return START_NOT_STICKY;
+        return START_STICKY;
     }
 }
