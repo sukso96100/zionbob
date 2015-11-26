@@ -61,6 +61,7 @@ public class MyReviewActivity extends AppCompatActivity {
                     OBJ = object;
                     int myReviewPos = findMyReview(GUID, object.getList("guids"));
                     Log.d(TAG, "POS : "+myReviewPos);
+                    POS = myReviewPos;
                     if(myReviewPos!=-1){
                     RB.setNumStars(5);
                         try{
@@ -112,6 +113,7 @@ public class MyReviewActivity extends AppCompatActivity {
 
     void sendReview(int pos){
         if(OBJ==null){
+            Log.d(TAG, "OBJ is null");
             ParseObject ReviewObj = new ParseObject("Reviews");
             ReviewObj.put("date", Date);
             ArrayList<String> nGUIDs = new ArrayList<String>();
@@ -135,6 +137,7 @@ public class MyReviewActivity extends AppCompatActivity {
             });
         }else{
             if(POS!=-1){
+                Log.d(TAG, "POS is not -1");
                 List<Object> RATES = OBJ.getList("rates");
                 List<Object> REVIEWS = OBJ.getList("reviews");
                 RATES.set(pos, RB.getRating());
@@ -152,9 +155,16 @@ public class MyReviewActivity extends AppCompatActivity {
                     }
                 });
                 }else{
-                    OBJ.getList("guids").add(GUID);
-                    OBJ.getList("rates").add(RB.getRating());
-                    OBJ.getList("reviews").add(ET.getText().toString());
+                Log.d(TAG, "POS is -1");
+                    List<Object> nGUIDs = OBJ.getList("guids");
+                    List<Object> nRates = OBJ.getList("rates");
+                    List<Object> nReviews = OBJ.getList("reviews");
+                    nGUIDs.add(GUID);
+                    nRates.add(RB.getRating());
+                    nReviews.add(ET.getText().toString());
+                    OBJ.put("guids", nGUIDs);
+                    OBJ.put("rates", nRates);
+                    OBJ.put("reviews", nReviews);
                     OBJ.saveInBackground(new SaveCallback() {
                         @Override
                         public void done(ParseException e) {

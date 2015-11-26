@@ -5,11 +5,13 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import java.util.Calendar;
+import java.util.UUID;
 
 /**
  * Created by youngbin on 15. 11. 23.
  */
 public class GuidTool {
+    UUID UUID;
     String TAG = "GuidTool";
     Context mContext;
     SharedPreferences Pref;
@@ -35,15 +37,16 @@ public class GuidTool {
     }
 
     public String createGUID(){
-        Calendar c = Calendar.getInstance();
-        String NewGUID = "GUID"
-                + c.get(Calendar.YEAR)
-                + c.get(Calendar.MONTH)
-                + c.get(Calendar.DAY_OF_MONTH)
-                + c.get(Calendar.HOUR_OF_DAY)
-                + c.get(Calendar.MINUTE)
-                + c.get(Calendar.MILLISECOND);
-        return NewGUID;
+        UUID uuid = UUID.randomUUID();
+//        Calendar c = Calendar.getInstance();
+//        String NewGUID = "GUID"
+//                + c.get(Calendar.YEAR)
+//                + c.get(Calendar.MONTH)
+//                + c.get(Calendar.DAY_OF_MONTH)
+//                + c.get(Calendar.HOUR_OF_DAY)
+//                + c.get(Calendar.MINUTE)
+//                + c.get(Calendar.MILLISECOND);
+        return uuid.toString();
     }
 
     public void genGUID(){
