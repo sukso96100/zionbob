@@ -55,9 +55,9 @@ public class MealPushService extends Service {
         // Get Date of Today
         Calendar Cal = Calendar.getInstance();
         year = Cal.get(Calendar.YEAR);
-        month = Cal.get(Calendar.MONTH);
-        day = Cal.get(Calendar.DAY_OF_MONTH);
-        dayofweek = Cal.get(Calendar.DAY_OF_WEEK);
+        month = Cal.get(Calendar.MONTH)+1;
+        day = Cal.get(Calendar.DAY_OF_MONTH)-1;
+        dayofweek = Cal.get(Calendar.DAY_OF_WEEK)-1;
 
         // Get Meal Type
         final int mealtype = intent.getIntExtra("mealtype", 2);
@@ -66,7 +66,7 @@ public class MealPushService extends Service {
         DATE = year+"."+month+"."+day;
 
 
-        Log.d(TAG, "Loading Lunch Data");
+        Log.d(TAG, "Loading Meal Data for Push Notification");
         final MealDataUtil MealObj = new MealDataUtil(ProvienceCode, SchooolCode,
                 SchoolTypeA, SchoolTypeB, mealtype, DATE);
         AsyncHttpClient MealClient = new AsyncHttpClient();

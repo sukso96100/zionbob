@@ -67,7 +67,7 @@ public class MealDetailsFragment extends Fragment {
         TextView OriginText = (TextView)Layout.findViewById(R.id.origintxt);
         TextView NutrientsText = (TextView)Layout.findViewById(R.id.nutrientstxt);
         // Show Informations
-        MealText.setText(mMeal.replaceAll(" ","\n"));
+        MealText.setText(mMeal);
         OriginText.setText(mOrigin);
         NutrientsText.setText(mNutrients);
         return Layout;

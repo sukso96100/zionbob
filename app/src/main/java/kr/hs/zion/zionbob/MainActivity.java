@@ -231,8 +231,12 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, LunchObj.Meal[dayofweek]);
                 if (LunchObj.Meal[dayofweek].length() <= 1) {
                     LunchObj.Meal[dayofweek] = getResources().getString(R.string.error_meal_nodata);
+                    LunchTxt.setText(LunchObj.Meal[dayofweek]);
+                }else{
+                    LunchObj.Meal[dayofweek] = LunchObj.Meal[dayofweek].replaceAll(" ", "\n");
+                    LunchTxt.setText(LunchObj.Meal[dayofweek]);
                 }
-                LunchTxt.setText(LunchObj.Meal[dayofweek].replaceAll(" ","\n"));
+
                 LunchMduObj = LunchObj;
                 Log.d(TAG, "Lunch Data Loaded");
                 // Cache Data
@@ -250,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
                 // Load From Cache
                 Snackbar.make(Root, getResources().getString(R.string.from_cache), Snackbar.LENGTH_SHORT).show();
                 LunchCache = Cache.getFromCache(year + "." + month + "." + day + "_2");
-                LunchTxt.setText(LunchCache[1].replaceAll(" ","\n"));
+                LunchTxt.setText(LunchCache[1].replaceAll(" ", "\n"));
                 LoadFromCache = true;
                 getDinner();
             }
@@ -279,8 +283,12 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, DinnerObj.Meal[dayofweek]);
                 if (DinnerObj.Meal[dayofweek].length() <= 1) {
                     DinnerObj.Meal[dayofweek] = getResources().getString(R.string.error_meal_nodata);
+                    DinnerTxt.setText(DinnerObj.Meal[dayofweek]);
+                }else{
+                    DinnerObj.Meal[dayofweek] = DinnerObj.Meal[dayofweek].replaceAll(" ","\n");
+                    DinnerTxt.setText(DinnerObj.Meal[dayofweek].replaceAll(" ","\n"));
                 }
-                DinnerTxt.setText(DinnerObj.Meal[dayofweek].replaceAll(" ","\n"));
+
                 // Cache Data
                 Cache.updateCache(year + "." + month + "." + day + "_3", DinnerObj.Meal[dayofweek],
                         MealDataProcessor.processOriginData(DinnerObj, dayofweek, mContext),
