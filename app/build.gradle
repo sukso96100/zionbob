@@ -8,8 +8,8 @@ android {
         applicationId "kr.hs.zion.zionbob"
         minSdkVersion 9
         targetSdkVersion 23
-        versionCode 3
-        versionName "B3"
+        versionCode 4
+        versionName "B4"
     }
     buildTypes {
         release {
