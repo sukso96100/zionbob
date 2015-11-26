@@ -236,8 +236,8 @@ public class MainActivity extends AppCompatActivity {
                 LunchMduObj = LunchObj;
                 Log.d(TAG, "Lunch Data Loaded");
                 // Cache Data
-                Cache.updateCache(year+"."+month+"."+day+"_2",LunchObj.Meal[dayofweek],
-                        processOriginData(LunchObj,dayofweek), processNutrientsData(LunchObj, dayofweek));
+                Cache.updateCache(year + "." + month + "." + day + "_2", LunchObj.Meal[dayofweek],
+                        processOriginData(LunchObj, dayofweek), processNutrientsData(LunchObj, dayofweek));
                 LoadFromCache = false;
                 getDinner();
             }
@@ -281,8 +281,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 DinnerTxt.setText(DinnerObj.Meal[dayofweek]);
                 // Cache Data
-                Cache.updateCache(year+"."+month+"."+day+"_3",DinnerObj.Meal[dayofweek],
-                        processOriginData(DinnerObj,dayofweek), processNutrientsData(DinnerObj, dayofweek));
+                Cache.updateCache(year + "." + month + "." + day + "_3", DinnerObj.Meal[dayofweek],
+                        processOriginData(DinnerObj, dayofweek), processNutrientsData(DinnerObj, dayofweek));
                 LunchCV.setVisibility(View.VISIBLE);
                 DinnerCV.setVisibility(View.VISIBLE);
                 DinnerMduObj = DinnerObj;
@@ -296,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "Failed Loading Dinner Data");
                 Log.e(TAG, error.toString());
                 // Load From Cache
-                Snackbar.make(Root,getResources().getString(R.string.error_net_cache),Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(Root, getResources().getString(R.string.error_net_cache), Snackbar.LENGTH_SHORT).show();
                 DinnerCache = Cache.getFromCache(year + "." + month + "." + day + "_3");
                 DinnerTxt.setText(DinnerCache[1]);
                 LunchCV.setVisibility(View.VISIBLE);
@@ -339,7 +339,11 @@ public class MainActivity extends AppCompatActivity {
                     // Caculate Average Rate
                     float Sum = 0;
                     for (int i = 0; i < object.getList("rates").size(); i++) {
+                        try{
                         Sum += (double) object.getList("rates").get(i);
+                        }catch (Exception E){
+                            Sum += (int) object.getList("rates").get(i);
+                        }
                     }
                     float Average = Sum / object.getList("rates").size();
                     LunchAvr.setText(String.valueOf(Average));

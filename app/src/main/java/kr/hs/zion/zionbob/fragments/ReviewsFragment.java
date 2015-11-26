@@ -195,7 +195,11 @@ public class ReviewsFragment extends Fragment {
         // Caculate Average Rate
         float Sum = 0;
         for(int i=0; i<Rates.size(); i++){
-            Sum += (double) Rates.get(i);
+            try{
+                Sum += (double) Rates.get(i);
+            }catch (Exception E){
+                Sum += (int) Rates.get(i);
+            }
         }
         float Average = Sum / Rates.size();
         View v = (View) getActivity()
@@ -207,8 +211,14 @@ public class ReviewsFragment extends Fragment {
         AvrRB.setRating(Average);
         if(MyReviewPos!=-1) {
             MyRB.setNumStars(5);
-            double d = (double)Rates.get(MyReviewPos);
-            MyRB.setRating((float) d);
+            try{
+                double d = (double)Rates.get(MyReviewPos);
+                MyRB.setRating((float) d);
+            }catch (Exception e){
+                int d = (int)Rates.get(MyReviewPos);
+                MyRB.setRating((float) d);
+            }
+
             MyReviewTxt.setText((String) Reviews.get(MyReviewPos));
         }
         return v;
